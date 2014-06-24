@@ -1,12 +1,5 @@
 .move-segmentation {
-   	/*-webkit-transform: translate(50px);*/
- 	-webkit-animation: translate-right 2s linear 1;
-	/*-webkit-animation: slide 5s linear 1;*/
+ 	-webkit-animation: translate-right 1s linear 1;
 }
 
-@-webkit-keyframes translate-right { 0% { -webkit-transform: translate(-250px); } }
-
-@-webkit-keyframes slide {
-  from { right: 0; }
-  to { right: 300; }
-}
+@-webkit-keyframes translate-right { 0% { -webkit-transform: translate(-148px); } 100% { -webkit-transform: translate(0px); } }
