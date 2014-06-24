@@ -5,7 +5,8 @@
 	<title>Reveal.js 3 Slide Demo</title>
 	<link rel="stylesheet" href="css/reveal.min.css">
 	<link rel="stylesheet" href="css/theme/default.css" id="theme">
-	<link rel="stylesheet" type="text/css" href="presentation.css" />
+	<link rel="stylesheet" type="text/css" href="presentation.css">
+	<link rel="stylesheet" href="css/animate.css">
 </head>
 
 <body>
@@ -18,20 +19,28 @@
 			</section>
 
 			<section>
-				<div class="fragment current-visible" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;">
+				<div id="sourceImage" class="fragment current-visible" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;">
 					<h2>Bron afbeelding</h2>
 					<img z-index: src="https://s3.amazonaws.com/media-p.slid.es/uploads/marceloavelino/images/482574/car.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
 				</div>
 
-				<div class="fragment current-visible" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;">
+				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
 					<h2>Yellow segmentation</h2>
-					<img src="https://s3.amazonaws.com/media-p.slid.es/uploads/marceloavelino/images/482590/yellow-segment.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
+					<img id="band-graph" src="images/band-graph.png" style="height: 533px; max-height: none; max-width: none; display: none;">
+					<img id="yellow-segment" src="https://s3.amazonaws.com/media-p.slid.es/uploads/marceloavelino/images/482590/yellow-segment.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
+					
 				</div>
 
-				<div class="fragment current-visible" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-					<h2>Band</h2>
-					<img id="band-graph" src="images/band-graph.png" style="height: 533px; max-height: none; max-width: none; display: inline-block; visibility: hidden">
-					<img id="yellow-segment" src="https://s3.amazonaws.com/media-p.slid.es/uploads/marceloavelino/images/482590/yellow-segment.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
+				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
+					<!-- <h2>Band</h2> -->
+					<!-- <img id="band-graph" src="images/band-graph.png" style="height: 533px; max-height: none; max-width: none; display: inline-block; visibility: hidden">
+					<img id="yellow-segment" src="https://s3.amazonaws.com/media-p.slid.es/uploads/marceloavelino/images/482590/yellow-segment.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;"> -->
+					
+				</div>
+				
+				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
+					<!-- <h2>Band</h2> -->
+					<canvas id="bandCanvas"/>
 				</div>
 			</section>
 		</div>
@@ -48,49 +57,83 @@
 			}
 		}
 
-		// Required, even if empty.
-		Reveal.initialize({
-		});
 		var indices = Reveal.getIndices();
 		var slideIndex = 0;
 
+		// Required, even if empty.
+		Reveal.initialize({ });
+
 		Reveal.addEventListener('slidechanged', function( event ) {
-    		// console.log("lalala");
-    		// console.log(event.indexh);
-
-    		slideIndex = event.indexh;
-
-    		// event.previousSlide, event.currentSlide, event.indexh, event.indexv
-    	});
+			slideIndex = event.indexh;
+		});
 
 		Reveal.addEventListener('fragmentshown', function( event ) {
-    		var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
-    		
-    		if (slideIndex == 1) {
-    			console.log(fragmentIndex + ":");
-    			
-    			if (fragmentIndex == 2) {
-    				var element = document.getElementById('yellow-segment');
-    				element.className += "move-segmentation";
-    				
+			var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
+			
+			if (slideIndex == 1) {
+				console.log(fragmentIndex + ":");
+				
+				if (fragmentIndex == 2) {
+					var yellowSegment = document.getElementById('yellow-segment');
+					yellowSegment.className = "move-segmentation";
+
     				// Wait for end of animation
-    				PrefixedEvent(element, "AnimationEnd", AnimationListener);
+    				PrefixedEvent(yellowSegment, "AnimationEnd", AnimationListener);
     				function AnimationListener(e) {
-    					if (e.type.toLowerCase().indexOf("animationend") >= 0) {
+    					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "translate-right") {
     						var bandGraph = document.getElementById("band-graph");
-    						bandGraph.style.visibility = "visible";
+    						bandGraph.style.display = "inline-block";
+    						bandGraph.className = "animated fadeInLeft";
     					}
     				}
-
-    				console.log(event.fragment);
     			}
 
     			else if (fragmentIndex == 3) {
-    				
+    				var yellowSegment = document.getElementById('yellow-segment');
+    				var bandGraph = document.getElementById("band-graph");
+    				// var canvas = document.createElement("canvas");
+    				var canvas = document.getElementById("bandCanvas");
+
+    				var rect = bandGraph.getBoundingClientRect();
+					console.log(rect.top, rect.right, rect.bottom, rect.left);
+
+    				canvas.style.position = "absolute";
+    				canvas.style.top = rect.top;
+    				canvas.style.left = rect.left;
+    				canvas.width = bandGraph.width + yellowSegment.width;
+    				canvas.height = bandGraph.height;
+
+    				var ctx = canvas.getContext("2d");
+    				ctx.fillStyle = "#FF0000";
+    				ctx.fillRect(0, 0, 10, 10);
     			}
     		}
+
+    		Reveal.addEventListener( 'fragmenthidden', function( event ) {
+    			var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
+    			if (slideIndex == 1) {
+    				if (fragmentIndex == 2) {
+
+    					var bandGraph = document.getElementById("band-graph");
+    					bandGraph.className = "animated fadeOutLeft";
+
+    					// Wait for end of animation
+    					PrefixedEvent(bandGraph, "AnimationEnd", AnimationListener);
+    					function AnimationListener(e) {
+    						if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutLeft") {
+    							// Hide bandGraph
+    							bandGraph.style.display = "none";
+
+    							var yellowSegment = document.getElementById('yellow-segment');
+    							yellowSegment.className = "return-segmentation";
+
+    						}
+    					}
+    				}
+    			}
+    		});
     	});
-	</script>
+</script>
 </body>
 </html>
 

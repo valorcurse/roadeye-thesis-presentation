@@ -1,5 +1,11 @@
 .move-segmentation {
- 	-webkit-animation: translate-right 1s linear 1;
+ 	-webkit-animation: translate-right 0.5s linear 1;
 }
 
-@-webkit-keyframes translate-right { 0% { -webkit-transform: translate(-148px); } 100% { -webkit-transform: translate(0px); } }
+
+.return-segmentation {
+ 	-webkit-animation: translate-left 0.5s linear 1;
+}
+
+@-webkit-keyframes translate-right { 0% { -webkit-transform: translate(0px); } 100% { -webkit-transform: translate(148px); } }
+@-webkit-keyframes translate-left { 0% { -webkit-transform: translate(148px); } 100% { -webkit-transform: translate(0px); } }
