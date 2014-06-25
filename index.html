@@ -84,7 +84,7 @@
 			var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
 			
 			if (slideIndex == 1) {
-				console.log(fragmentIndex + ":");
+				console.log("Shown: " + fragmentIndex);
 				
 				switch(fragmentIndex) {
 
@@ -103,6 +103,7 @@
 						break;
 
 					}
+
 					case "3": {
 						var yellowSegment = document.getElementById('yellow-segment');
 						var bandGraph = document.getElementById("band-graph");
@@ -137,38 +138,47 @@
 		});
 
 Reveal.addEventListener( 'fragmenthidden', function( event ) {
+	var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
+	console.log("Hidden: " + fragmentIndex);
+	
 	if (slideIndex == 1) {
 
-		var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
 		switch(fragmentIndex) {
 			case "2": {
-
 				var bandGraph = document.getElementById("band-graph");
 				bandGraph.className = "animated fadeOutLeft";
 
-				PrefixedEvent(bandGraph, "AnimationEnd", AnimationListener);
-				function AnimationListener(e) {
+				PrefixedEvent(bandGraph, "AnimationEnd", BandAnimationListener);
+				function BandAnimationListener(e) {
 					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutLeft") {
 
 						bandGraph.style.display = "none";
 
 						var yellowSegment = document.getElementById('yellow-segment');
 						yellowSegment.className = "return-segmentation";
-
 					}
 				}
+
 				break;
 			}
 
+			// case "3": {
+			// 	var canvas = document.getElementById("bandCanvas");
+			// 	canvas.style.display = "inline";
+			// 	break;
+			// }
+
 			case "4": {
 				var band1 = document.getElementById("band1");
-				
 				band1.className = "animated fadeOut";
 
 				PrefixedEvent(band1, "AnimationEnd", AnimationListener);
 				function AnimationListener(e) {
 					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOut") {
 						band1.style.display = "none";
+						
+						var canvas = document.getElementById("bandCanvas");
+						canvas.style.display = "inline";
 					}
 				}
 			}
