@@ -28,7 +28,8 @@
 					<h2>Yellow segmentation</h2>
 					
 					<img id="band-graph" src="images/band-graph.png" style="height: 533px; max-height: none; max-width: none; display: none;">
-					<div style="display: inline-block; position: relative">
+					
+					<div id="bandDiv" style="display: inline-block; position: relative; width: 795.9107744107744px;">
 						<img id="yellow-segment" src="images/yellow-segment.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
 
 						<img id="band1" src="images/band1.png" style="width: 795.9107744107744px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
@@ -40,20 +41,15 @@
 				</div>
 
 				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-					<!-- <h2>Band</h2> -->
-					<!-- <img id="band-graph" src="images/band-graph.png" style="height: 533px; max-height: none; max-width: none; display: inline-block; visibility: hidden">
-					<img id="yellow-segment" src="https://s3.amazonaws.com/media-p.slid.es/uploads/marceloavelino/images/482590/yellow-segment.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;"> -->
-					
 				</div>
 				
 				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-					<!-- <h2>Band</h2> -->
-					<!-- <canvas id="bandCanvas"/> -->
 				</div>
 
 				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-					<!-- <h2>Band</h2> -->
-					<!-- <canvas id="bandCanvas"/> -->
+				</div>
+
+				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
 				</div>
 			</section>
 		</div>
@@ -88,6 +84,12 @@
 				
 				switch(fragmentIndex) {
 
+					case "1": {
+						var yellowSegment = document.getElementById('yellow-segment');
+						yellowSegment.className = "animated fadeIn";
+						break;
+					}
+
 					case "2": {
 						var yellowSegment = document.getElementById('yellow-segment');
 						yellowSegment.className = "move-segmentation";
@@ -109,7 +111,7 @@
 						var bandGraph = document.getElementById("band-graph");
 
 						var canvas = document.getElementById("bandCanvas");
-						canvas.width = bandGraph.width + yellowSegment.width + 13;
+						canvas.width = bandGraph.width + yellowSegment.width + 14;
 						canvas.height = bandGraph.height;
 
 						var ctx = canvas.getContext("2d");
@@ -130,7 +132,26 @@
 						break;
 					}
 
-					default: { 
+					case "5": {
+						var bandGraph = document.getElementById("band-graph");
+						bandGraph.className = "animated fadeOutLeft";
+
+						var yellowSegment = document.getElementById('yellow-segment');
+						yellowSegment.className = "animated fadeOutRight";
+						
+						var band1 = document.getElementById("band1");
+						band1.className = "translateBand";
+
+
+						PrefixedEvent(yellowSegment, "AnimationEnd", Case5Listener);
+						function Case5Listener(e) {
+							if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutRight") {
+								yellowSegment.style.display = "none";
+								bandGraph.style.display = "none";
+								band1.style.position = "static";
+							}
+						}
+
 						break;
 					}
 				}
@@ -144,6 +165,12 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 	if (slideIndex == 1) {
 
 		switch(fragmentIndex) {
+			case "1": {
+				var yellowSegment = document.getElementById('yellow-segment');
+				yellowSegment.className = "animated fadeOut";
+				break;
+			}
+
 			case "2": {
 				var bandGraph = document.getElementById("band-graph");
 				bandGraph.className = "animated fadeOutLeft";
@@ -181,6 +208,28 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 						canvas.style.display = "inline";
 					}
 				}
+			}
+
+			case "5": {
+				var bandGraph = document.getElementById("band-graph");
+				bandGraph.className = "animated fadeInLeft";
+
+				var yellowSegment = document.getElementById('yellow-segment');
+				yellowSegment.className = "animated fadeInRight";
+
+				var band1 = document.getElementById("band1");
+				band1.className = "unTranslateBand";
+
+				PrefixedEvent(band1, "AnimationEnd", hidden5Listener);
+				function hidden5Listener(e) {
+					console.log(e.animationeName);
+					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bandUnTranslate") {
+						bandGraph.style.display = "inline-block";
+						yellowSegment.style.display = "inline-block";
+						band1.style.position = "absolute";
+					}
+				}
+				break;
 			}
 		}
 	}

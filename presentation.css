@@ -7,5 +7,16 @@
  	-webkit-animation: translate-left 0.5s linear 1;
 }
 
+.translateBand {
+ 	-webkit-animation: bandTranslate 1s linear 1;
+}
+
+.unTranslateBand {
+ 	-webkit-animation: bandUnTranslate 1s linear 1;	
+}
+
 @-webkit-keyframes translate-right { 0% { -webkit-transform: translate(0px); } 100% { -webkit-transform: translate(148px); } }
 @-webkit-keyframes translate-left { 0% { -webkit-transform: translate(148px); } 100% { -webkit-transform: translate(0px); } }
+
+@-webkit-keyframes bandTranslate { 100% { -webkit-transform: translate(-152px, -282px); } }
+@-webkit-keyframes bandUnTranslate { 100% { -webkit-transform: translate(150px, 282px); } }
