@@ -144,16 +144,24 @@
 						var yellowSegment = document.getElementById('yellow-segment');
 						yellowSegment.className = "animated fadeOutRight";
 						
-						var band1 = document.getElementById("band1");
-						band1.className = "translateBand";
+						
 
 
 						PrefixedEvent(yellowSegment, "AnimationEnd", Case5Listener);
 						function Case5Listener(e) {
 							if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutRight") {
-								yellowSegment.style.display = "none";
-								bandGraph.style.display = "none";
-								band1.style.position = "static";
+
+								var band1 = document.getElementById("band1");
+								band1.className = "translateBand";
+								
+								PrefixedEvent(band1, "AnimationEnd", Case5Listener2);
+								function Case5Listener2(e) {
+									if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bandTranslate") {
+										yellowSegment.style.display = "none";
+										bandGraph.style.display = "none";
+										band1.style.position = "static";
+									}
+								}
 							}
 						}
 
@@ -246,13 +254,29 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 
 				PrefixedEvent(band1, "AnimationEnd", hidden5Listener);
 				function hidden5Listener(e) {
-					console.log("here3: " + e.animationName);
 					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bandUnTranslate") {
 						bandGraph.style.display = "inline-block";
 						yellowSegment.style.display = "inline-block";
 						band1.style.position = "absolute";
 					}
 				}
+				break;
+			}
+
+			case "6": {
+				var bandDiv = document.getElementById("bandDiv");
+
+				var band1Graph = document.getElementById("band1Graph");
+				band1Graph.className = "animated fadeOutDown";
+
+				PrefixedEvent(band1Graph, "AnimationEnd", hidden6Listener);
+				function hidden6Listener(e) {
+					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutDown") {
+						bandDiv.style.display = "inline-block";
+						band1Graph.style.display = "none";
+					}
+				}
+
 				break;
 			}
 		}
