@@ -8,11 +8,11 @@
 }
 
 .translateBand {
- 	-webkit-animation: bandTranslate 1s linear 1;
+ 	-webkit-animation: bandTranslate 0.7s linear 1;
 }
 
 .unTranslateBand {
- 	-webkit-animation: bandUnTranslate 1s linear 1;	
+ 	-webkit-animation: bandUnTranslate 0.7s linear 1;	
 }
 
 @-webkit-keyframes translate-right { 0% { -webkit-transform: translate(0px); } 100% { -webkit-transform: translate(148px); } }

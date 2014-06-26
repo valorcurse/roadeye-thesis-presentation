@@ -34,6 +34,7 @@
 
 						<img id="band1" src="images/band1.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
 						
+						<img id="plate1" src="images/plate1.png" style="height: 41px; height: 41px; left: 178px; max-height: none; max-width: none; display: none; position: absolute">
 					</div>
 					
 					<img id="band1Graph" src="images/band1Graph.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; display: none">
@@ -56,12 +57,18 @@
 
 				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
 				</div>
+
+				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
+				</div>
+
+				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
+				</div>
 			</section>
 		</div>
 	</div>
+
 	<script src="lib/js/head.min.js"></script>
 	<script src="js/reveal.min.js"></script>
-
 	<script>
 		var pfx = ["webkit", "moz", "MS", "o", ""];
 		function PrefixedEvent(element, type, callback) {
@@ -120,7 +127,8 @@
 						canvas.height = bandGraph.height;
 
 						var ctx = canvas.getContext("2d");
-						ctx.strokeStyle="#FF0000";
+						ctx.strokeStyle = "#FF0000";
+						ctx.lineWidth = 2;
 						ctx.strokeRect(0, canvas.height / 2 + 15, canvas.width, 42);
 
 						break;
@@ -153,7 +161,7 @@
 
 								var band1 = document.getElementById("band1");
 								band1.className = "translateBand";
-								
+
 								PrefixedEvent(band1, "AnimationEnd", Case5Listener2);
 								function Case5Listener2(e) {
 									if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bandTranslate") {
@@ -181,6 +189,37 @@
 						band1Graph.className = "animated fadeInUp";
 
 						break;
+					}
+
+					case "7": {
+						var band1 = document.getElementById("band1");
+						var band1Graph = document.getElementById("band1Graph");
+						var bandDiv = document.getElementById("bandDiv");
+
+						var canvas = document.getElementById("bandCanvas");
+						var ctx = canvas.getContext("2d");
+
+						ctx.clearRect(0, 0, canvas.width, canvas.height);
+						canvas.style.display = "";
+						canvas.style.right = "83px";
+						canvas.style.left = "";
+						canvas.style.bottom = "26px";
+						canvas.width = band1Graph.width;
+						canvas.height = band1Graph.height + band1.height + 14;
+
+						ctx.strokeStyle = "#FF0000";
+						ctx.lineWidth = 2;
+						ctx.strokeRect(98, 0, 122, canvas.height);
+
+						break;
+					}
+
+					case "8": {
+						var canvas = document.getElementById("bandCanvas");
+						canvas.style.display = "none";
+						
+						var plate1 = document.getElementById("plate1");
+						plate1.style.display = "";
 					}
 				}
 			}
@@ -278,6 +317,11 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 				}
 
 				break;
+			}
+
+			case "8": {
+				var plate1 = document.getElementById("plate1");
+				plate1.style.display = "none";
 			}
 		}
 	}
