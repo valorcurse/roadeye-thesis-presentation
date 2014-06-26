@@ -29,12 +29,14 @@
 					
 					<img id="band-graph" src="images/band-graph.png" style="height: 533px; max-height: none; max-width: none; display: none;">
 					
-					<div id="bandDiv" style="display: inline-block; position: relative; width: 795.9107744107744px;">
+					<div id="bandDiv" style="display: inline-block; position: relative;">
 						<img id="yellow-segment" src="images/yellow-segment.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
 
-						<img id="band1" src="images/band1.png" style="width: 795.9107744107744px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
+						<img id="band1" src="images/band1.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
 						
 					</div>
+					
+					<img id="band1Graph" src="images/band1Graph.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; display: none">
 					
 					<canvas id="bandCanvas" style="margin-top: 19px; margin-left: 4px; left: 0; position: absolute"/>
 
@@ -43,6 +45,9 @@
 				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
 				</div>
 				
+				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
+				</div>
+
 				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
 				</div>
 
@@ -154,6 +159,21 @@
 
 						break;
 					}
+
+					case "6": {
+						var bandDiv = document.getElementById("bandDiv");
+						bandDiv.style.display = "";
+
+						var band1 = document.getElementById("band1");
+						band1.style.marginBottom = "0px";
+
+						var band1Graph = document.getElementById("band1Graph");
+						band1Graph.style.display = "";
+						band1Graph.style.marginTop = "0px";
+						band1Graph.className = "animated fadeInUp";
+
+						break;
+					}
 				}
 			}
 		});
@@ -189,25 +209,29 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 				break;
 			}
 
-			// case "3": {
-			// 	var canvas = document.getElementById("bandCanvas");
-			// 	canvas.style.display = "inline";
-			// 	break;
-			// }
+			case "3": {
+				var canvas = document.getElementById("bandCanvas");
+				canvas.style.display = "none";
+				break;
+			}
 
 			case "4": {
 				var band1 = document.getElementById("band1");
 				band1.className = "animated fadeOut";
+				console.log("here");
 
-				PrefixedEvent(band1, "AnimationEnd", AnimationListener);
-				function AnimationListener(e) {
+				PrefixedEvent(band1, "AnimationEnd", hidden4Listener);
+				function hidden4Listener(e) {
 					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOut") {
 						band1.style.display = "none";
-						
+						band1.className = "";
+						console.log("here2: " + e.animationName);
 						var canvas = document.getElementById("bandCanvas");
 						canvas.style.display = "inline";
 					}
 				}
+
+				break;
 			}
 
 			case "5": {
@@ -222,7 +246,7 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 
 				PrefixedEvent(band1, "AnimationEnd", hidden5Listener);
 				function hidden5Listener(e) {
-					console.log(e.animationeName);
+					console.log("here3: " + e.animationName);
 					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bandUnTranslate") {
 						bandGraph.style.display = "inline-block";
 						yellowSegment.style.display = "inline-block";
