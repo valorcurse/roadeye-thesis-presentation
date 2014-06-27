@@ -34,7 +34,20 @@
 
 						<img id="band1" src="images/band1.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
 						
-						<img id="plate1" src="images/plate1.png" style="height: 41px; height: 41px; left: 178px; max-height: none; max-width: none; display: none; position: absolute">
+						<img id="plate1" src="images/plate1.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none; position: absolute">
+						
+						<img id="arrowDown1" src="images/arrowDownWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-left: auto; margin-right: auto;" >
+
+						<img id="plate1Bounding" src="images/plate1Bounding.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
+
+						<img id="arrowDown2" src="images/arrowDownWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-left: auto; margin-right: auto;" >
+						
+						<img id="plate1Warped" src="images/plate1Warped.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
+
+						<img id="arrowDown3" src="images/arrowDownWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-left: auto; margin-right: auto;" >
+
+						<img id="plate1Text" src="images/plate1Text.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
+
 					</div>
 					
 					<img id="band1Graph" src="images/band1Graph.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; display: none">
@@ -43,26 +56,27 @@
 
 				</div>
 
-				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-				</div>
+				<div class="fragment" />
 				
-				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-				</div>
+				<div class="fragment" />
 
-				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-				</div>
+				<div class="fragment" />
 
-				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-				</div>
+				<div class="fragment" />
 
-				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-				</div>
+				<div class="fragment" />
 
-				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-				</div>
+				<div class="fragment" />
 
-				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-				</div>
+				<div class="fragment" />
+
+				<div class="fragment" />
+
+				<div class="fragment" />
+
+				<div class="fragment" />
+
+				<div class="fragment" />
 			</section>
 		</div>
 	</div>
@@ -194,7 +208,6 @@
 					case "7": {
 						var band1 = document.getElementById("band1");
 						var band1Graph = document.getElementById("band1Graph");
-						var bandDiv = document.getElementById("bandDiv");
 
 						var canvas = document.getElementById("bandCanvas");
 						var ctx = canvas.getContext("2d");
@@ -220,6 +233,93 @@
 						
 						var plate1 = document.getElementById("plate1");
 						plate1.style.display = "";
+						
+						break;
+					}
+
+					case "9": {
+						var band1 = document.getElementById("band1");
+						var band1Graph = document.getElementById("band1Graph");
+
+						band1.className = "animated fadeOutLeft";
+						band1Graph.className = "animated fadeOutRight";
+
+
+						PrefixedEvent(band1, "AnimationEnd", Case9Listener);
+						function Case9Listener(e) {
+							if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutLeft") {
+								band1.style.display = "none";
+								band1Graph.style.display = "none";
+							}
+						}
+						break;
+					}
+
+					case "10": {
+						var plate1 = document.getElementById("plate1");
+						plate1.className = "move-segmentation";
+
+						PrefixedEvent(plate1, "AnimationEnd", Case10Listener);
+						function Case10Listener(e) {
+							if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "translate-right") {
+
+								plate1.style.position = "";
+								plate1.style.display = "block";
+								plate1.style.marginLeft = "auto"
+								plate1.style.marginRight = "auto"
+
+								var arrowDown = document.getElementById("arrowDown1");
+								arrowDown.style.display = "block";
+								arrowDown.className = "animated bounceInDown";
+
+								var plate1Bounding = document.getElementById("plate1Bounding")
+								plate1Bounding.style.display = "block";
+								plate1Bounding.style.marginLeft = "auto"
+								plate1Bounding.style.marginRight = "auto"
+								plate1Bounding.className = "animated bounceInDown";
+
+								var bandDiv = document.getElementById("bandDiv");
+								bandDiv.insertBefore(arrowDown, plate1Bounding);
+							}
+						}
+
+						break;
+					}
+
+					case "11": {
+						var arrowDown = document.getElementById("arrowDown2");
+						arrowDown.style.display = "block";
+						arrowDown.className = "animated bounceInDown";
+
+						var plate1Warped = document.getElementById("plate1Warped")
+						plate1Warped.style.display = "block";
+						plate1Warped.style.marginLeft = "auto"
+						plate1Warped.style.marginRight = "auto"
+						plate1Warped.className = "animated bounceInDown";
+
+						var bandDiv = document.getElementById("bandDiv");
+						bandDiv.insertBefore(arrowDown, plate1Warped);
+						
+						break;
+					}
+
+					case "12": {
+						var plate1Warped = document.getElementById("plate1Warped")
+
+						var arrowDown = document.getElementById("arrowDown3");
+						arrowDown.style.display = "block";
+						arrowDown.className = "animated bounceInDown";
+
+						var plate1Text = document.getElementById("plate1Text")
+						plate1Text.style.display = "block";
+						plate1Text.style.marginLeft = "auto"
+						plate1Text.style.marginRight = "auto"
+						plate1Text.className = "animated bounceInDown";
+
+						var bandDiv = document.getElementById("bandDiv");
+						bandDiv.insertBefore(arrowDown, plate1Text);
+						
+						break;
 					}
 				}
 			}
@@ -322,6 +422,27 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 			case "8": {
 				var plate1 = document.getElementById("plate1");
 				plate1.style.display = "none";
+			}
+			
+			case "10": {
+				var plate1Bounding = document.getElementById("plate1Bounding");
+				plate1Bounding.className = "animated bounceOutUp";
+
+				var arrowDown = document.getElementById("arrowDown1");
+				arrowDown.className = "animated bounceOutUp";
+
+				PrefixedEvent(arrowDown, "AnimationEnd", hidden10Listener);
+				function hidden10Listener(e) {
+					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bounceOutUp") {
+						arrowDown.style.display = "none";
+						plate1Bounding.display = "none";
+
+						var plate1 = document.getElementById("plate1");
+						plate1.className = "return-segmentation";
+					}
+				}
+
+				break;
 			}
 		}
 	}

@@ -15,6 +15,10 @@
  	-webkit-animation: bandUnTranslate 0.7s linear 1;	
 }
 
+.translatePlate {
+ 	-webkit-animation: translate-right 0.7s linear 1;		
+}
+
 @-webkit-keyframes translate-right { 0% { -webkit-transform: translate(0px); } 100% { -webkit-transform: translate(148px); } }
 @-webkit-keyframes translate-left { 0% { -webkit-transform: translate(148px); } 100% { -webkit-transform: translate(0px); } }
 
