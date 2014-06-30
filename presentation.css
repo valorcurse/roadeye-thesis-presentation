@@ -23,11 +23,11 @@
 	-webkit-animation: plateUnTranslate 0.7s linear 1;		
 }
 
-@-webkit-keyframes translate-right { 0% { -webkit-transform: translate(0px); } 100% { -webkit-transform: translate(148px); } }
-@-webkit-keyframes translate-left { 0% { -webkit-transform: translate(148px); } 100% { -webkit-transform: translate(0px); } }
+@-webkit-keyframes translate-right { 0% { -webkit-transform: translate(0px); } 100% { -webkit-transform: translate(60px); } }
+@-webkit-keyframes translate-left { 0% { -webkit-transform: translate(60px); } 100% { -webkit-transform: translate(0px); } }
 
-@-webkit-keyframes bandTranslate { 100% { -webkit-transform: translate(-152px, -282px); } }
-@-webkit-keyframes bandUnTranslate { 100% { -webkit-transform: translate(150px, 282px); } }
+@-webkit-keyframes bandTranslate { 100% { -webkit-transform: translate(-55px, -282px); } }
+@-webkit-keyframes bandUnTranslate { 100% { -webkit-transform: translate(55px, 282px); } }
 
 @-webkit-keyframes plateTranslate { 100% { -webkit-transform: translate(250px, -15px); } }
 @-webkit-keyframes plateUnTranslate { 100% { -webkit-transform: translate(-250px, 15px); } }

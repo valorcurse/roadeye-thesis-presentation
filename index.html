@@ -52,7 +52,7 @@
 					
 					<img id="band1Graph" src="images/band1Graph.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; display: none">
 					
-					<canvas id="bandCanvas" style="margin-top: 19px; margin-left: 4px; left: 0; position: absolute"/>
+					<canvas id="bandCanvas" style="margin-top: 19px; margin-left: 25px; left: 0; position: absolute"/>
 
 				</div>
 
@@ -126,7 +126,6 @@
 
 					case "2": {
 						title.innerHTML = "Bands";
-						// title.className = "animated fadeIn";
 
 						var yellowSegment = document.getElementById('yellow-segment');
 						yellowSegment.className = "move-segmentation";
@@ -381,23 +380,30 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 
 			case "3": {
 				var canvas = document.getElementById("bandCanvas");
-				canvas.style.display = "none";
+				var ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
 				break;
 			}
 
 			case "4": {
 				var band1 = document.getElementById("band1");
 				band1.className = "animated fadeOut";
-				console.log("here");
 
 				PrefixedEvent(band1, "AnimationEnd", hidden4Listener);
 				function hidden4Listener(e) {
 					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOut") {
-						band1.style.display = "none";
-						band1.className = "";
-						console.log("here2: " + e.animationName);
-						var canvas = document.getElementById("bandCanvas");
-						canvas.style.display = "inline";
+
+						band1.style.position = "absolute";
+						band1.className = "animated fadeOut";
+
+						var bandGraph = document.getElementById("band-graph");
+						bandGraph.style.display = "inline-block";
+						bandGraph.className = "animated fadeInLeft";
+
+						var yellowSegment = document.getElementById('yellow-segment');
+						yellowSegment.style.display = "inline-block";
+						yellowSegment.className = "animated fadeInRight";
+
 					}
 				}
 
@@ -405,27 +411,6 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 			}
 
 			case "5": {
-				var bandGraph = document.getElementById("band-graph");
-				bandGraph.className = "animated fadeInLeft";
-
-				var yellowSegment = document.getElementById('yellow-segment');
-				yellowSegment.className = "animated fadeInRight";
-
-				var band1 = document.getElementById("band1");
-				band1.className = "unTranslateBand";
-
-				PrefixedEvent(band1, "AnimationEnd", hidden5Listener);
-				function hidden5Listener(e) {
-					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bandUnTranslate") {
-						bandGraph.style.display = "inline-block";
-						yellowSegment.style.display = "inline-block";
-						band1.style.position = "absolute";
-					}
-				}
-				break;
-			}
-
-			case "6": {
 				var bandDiv = document.getElementById("bandDiv");
 
 				var band1Graph = document.getElementById("band1Graph");
@@ -442,12 +427,12 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 				break;
 			}
 
-			case "8": {
+			case "7": {
 				var plate1 = document.getElementById("plate1");
 				plate1.style.display = "none";
 			}
 			
-			case "10": {
+			case "9": {
 				var plate1Bounding = document.getElementById("plate1Bounding");
 				plate1Bounding.className = "animated bounceOutUp";
 
@@ -468,7 +453,7 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 				break;
 			}
 
-			case "11": {
+			case "10": {
 				var plate1Warped = document.getElementById("plate1Warped");
 				plate1Warped.className = "animated bounceOutUp";
 
@@ -486,7 +471,7 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 				break;
 			}
 
-			case "12": {
+			case "11": {
 				var plate1Text = document.getElementById("plate1Text");
 				plate1Text.className = "animated bounceOutUp";
 
