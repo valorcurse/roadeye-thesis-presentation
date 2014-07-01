@@ -7,28 +7,28 @@ section p img[alt=logoCGI] { height: 150px; position: absolute; bottom: 0px; lef
 }
 
 .move-segmentation {
-	-webkit-animation: translate-right 0.5s linear 1;
+	-webkit-animation: translate-right 0.3s linear 1;
 }
 
 
 .return-segmentation {
-	-webkit-animation: translate-left 0.5s linear 1;
+	-webkit-animation: translate-left 0.3s linear 1;
 }
 
 .translateBand {
-	-webkit-animation: bandTranslate 0.7s linear 1;
+	-webkit-animation: bandTranslate 0.5s linear 1;
 }
 
 .unTranslateBand {
-	-webkit-animation: bandUnTranslate 0.7s linear 1;	
+	-webkit-animation: bandUnTranslate 0.5s linear 1;	
 }
 
 .translatePlate {
-	-webkit-animation: plateTranslate 0.7s linear 1;		
+	-webkit-animation: plateTranslate 0.5s linear 1;		
 }
 
 .unTranslatePlate {
-	-webkit-animation: plateUnTranslate 0.7s linear 1;		
+	-webkit-animation: plateUnTranslate 0.5s linear 1;		
 }
 
 @-webkit-keyframes translate-right { 0% { -webkit-transform: translate(0px); } 100% { -webkit-transform: translate(60px); } }
