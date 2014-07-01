@@ -97,20 +97,23 @@
 						
 						<img id="edgeDetection" src="images/edge-detection.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none; display: none">
 
-						<!-- <img id="band1" src="images/band1.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">	 -->
 						<img id="band1Edge" src="images/band1Edge.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
 						
 						<img id="plate1" src="images/plate1Edge.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none; position: absolute">
 						
 						<img id="arrowDown1" src="images/arrowDownWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-left: auto; margin-right: auto;" >
 
-						<img id="plate1Bounding" src="images/plate1Bounding.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
+						<img id="plate1Grey" src="images/plate1Grey.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
 
 						<img id="arrowDown2" src="images/arrowDownWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-left: auto; margin-right: auto;" >
+
+						<img id="plate1Bounding" src="images/plate1Bounding.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
+
+						<img id="arrowDown3" src="images/arrowDownWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-left: auto; margin-right: auto;" >
 						
 						<img id="plate1Warped" src="images/plate1Warped.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
 
-						<img id="arrowDown3" src="images/arrowDownWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-left: auto; margin-right: auto;" >
+						<img id="arrowDown4" src="images/arrowDownWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-left: auto; margin-right: auto;" >
 
 						<img id="plate1Text" src="images/plate1Text.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
 
@@ -121,6 +124,8 @@
 					<canvas id="bandCanvas" style="margin-top: 19px; margin-left: 25px; left: 0; position: absolute"/>
 
 				</div>
+
+				<div class="fragment" />
 
 				<div class="fragment" />
 
@@ -171,7 +176,6 @@
 		var indices = Reveal.getIndices();
 		var slideIndex = 0;
 
-		// Required, even if empty.
 		Reveal.initialize({
 			transition: 'cube',
 			center: false,
@@ -402,6 +406,25 @@
 							arrowDown.style.display = "block";
 							arrowDown.className = "animated bounceInDown";
 
+							var plate1Grey = document.getElementById("plate1Grey")
+							plate1Grey.style.display = "block";
+							plate1Grey.style.marginLeft = "auto"
+							plate1Grey.style.marginRight = "auto"
+							plate1Grey.className = "animated bounceInDown";
+
+							var bandDiv = document.getElementById("bandDiv");
+							bandDiv.insertBefore(arrowDown, plate1Grey);
+
+							break;
+						}
+
+						case "10": {
+							title.innerHTML = "Bounding Box";
+
+							var arrowDown = document.getElementById("arrowDown2");
+							arrowDown.style.display = "block";
+							arrowDown.className = "animated bounceInDown";
+
 							var plate1Bounding = document.getElementById("plate1Bounding")
 							plate1Bounding.style.display = "block";
 							plate1Bounding.style.marginLeft = "auto"
@@ -414,10 +437,10 @@
 							break;
 						}
 
-						case "10": {
+						case "11": {
 							title.innerHTML = "Warp Perspective";
 
-							var arrowDown = document.getElementById("arrowDown2");
+							var arrowDown = document.getElementById("arrowDown3");
 							arrowDown.style.display = "block";
 							arrowDown.className = "animated bounceInDown";
 
@@ -433,12 +456,12 @@
 							break;
 						}
 
-						case "11": {
+						case "12": {
 							title.innerHTML = "Find Contours";
 
 							var plate1Warped = document.getElementById("plate1Warped")
 
-							var arrowDown = document.getElementById("arrowDown3");
+							var arrowDown = document.getElementById("arrowDown4");
 							arrowDown.style.display = "block";
 							arrowDown.className = "animated bounceInDown";
 
