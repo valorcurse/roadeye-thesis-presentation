@@ -10,9 +10,7 @@
 </head>
 
 <body>
-	<!-- Wrap the entire slide show in a div using the "reveal" class. -->
 	<div class="reveal">
-		<!-- Wrap all slides in a single "slides" class -->
 		<div class="slides">
 			<section data-markdown>
 				<script type="text/template">
@@ -23,16 +21,15 @@
 				</script>
 			</section>
 			
-			<section data-markdown>
-				<script type="text/template">
-					## Inhoudsopgave
-
-					- Inleiding
-					- Onderzoeksvragen
-					- Leerpunten
-					- Conclusie
-					- Demo
-				</script>
+			<section>
+				<h2>Inhoudsopgave</h2>
+				<ul>
+					<li>Inleiding</li>
+					<li>Onderzoeksvragen</li>
+					<li>Conclusie</li>
+					<li>Leerpunten</li>
+					<li>Demo</li>
+				</ul>
 			</section>
 
 			<section>
@@ -40,32 +37,47 @@
 				<ul>
 					<div class="fragment fade-in">
 						<div class="fragment shrink">
-							<li>Probleem</li>
+							<b>Probleem</b>
+
+							<ul>
+								<li>Gestolen auto's</li>
+								<li>Groot aantal smartphones</li>
+								<li>Crowdsourcing</li>
+							</ul>
 						</div>
-					</div>
-					<div class="fragment fade-in">
-						<li class="fragment shrink">Doel</li>
-						<ul>
-							<li>Android applicatie</li>
-						</ul>
 					</div>
 
 					<div class="fragment fade-in">
-						<li>Onderzoeksvragen</li>
+						<div class="fragment shrink">
+							<b>Doel</b>
+
+							<ul>
+								<li>Android applicatie</li>
+								<li>Kentekenplaten vinden in video beelden</li>
+								<li>Tekst herkennen</li>
+								<li>Match melden</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="fragment fade-in">
+						<b>Onderzoeksvragen</b>
 						
 						<ul>
-							<li>How can license plate information be gathered from the images of a smartphone camera using software?</li>
-							<li>How can the software be optimized to work in a correct way from within a mobile device?</li>
-							<li>What are the limitations of such an application?</li>
+							<!-- <li>How can license plate information be gathered from the images of a smartphone camera using software?</li> -->
+							<li>Hoe kan de informatie van kentekenplaten worden gelezen uit de beelden van de camera van een smartphone?</li>
+							<!-- <li>How can the software be optimized to work in a correct way from within a mobile device?</li> -->
+							<li>Hoe kan de software geoptimaliseerd worden waardoor het op een juiste manier op een smartphone werkt?</li>
+							<!-- <li>What are the limitations of such an application?</li> -->
+							<li>Wat zijn de limitaties van zo een applicatie?</li>
 						</ul>
 					</div>
-					<!-- </div> -->
 				</ul>
 			</section>
 			
 			<section>
 				<h3 style="margin-top: 240px">
-					How can license plate information be gathered from the images of a smartphone camera using software?
+					Hoe kan de informatie van kentekenplaten worden gelezen uit de beelden van de camera van een smartphone?
 				</h3>
 			</section>
 
@@ -82,8 +94,11 @@
 					
 					<div id="bandDiv" style="display: inline-block; position: relative;">
 						<img id="yellow-segment" src="images/yellow-segment.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
+						
+						<img id="edgeDetection" src="images/edge-detection.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none; display: none">
 
-						<img id="band1" src="images/band1.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
+						<!-- <img id="band1" src="images/band1.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">	 -->
+						<img id="band1Edge" src="images/band1Edge.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
 						
 						<img id="plate1" src="images/plate1.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none; position: absolute">
 						
@@ -127,6 +142,18 @@
 
 				<div class="fragment" />
 			</section>
+
+			<section>
+				<h3 style="margin-top: 240px">
+					Hoe kan de software geoptimaliseerd worden waardoor het op een juiste manier op een smartphone werkt?
+				</h3>
+			</section>
+
+			<section>
+				<h3 style="margin-top: 240px">
+					Wat zijn de limitaties van zo een applicatie?
+				</h3>
+			</section>
 		</div>
 	</div>
 
@@ -165,17 +192,20 @@
 
 		Reveal.addEventListener('fragmentshown', function( event ) {
 			var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
-			console.log(slideIndex +") Shown: " + fragmentIndex);
+			console.log("Fragment shown: " + fragmentIndex);
 			
 			switch (slideIndex) {
 				case 2: {
+					switch (fragmentIndex) {
+						case "1": {
 
+						}
+					}
 					break;
 				}
 				
 				case 4: {
 					var title = document.getElementById("title");
-					console.log("here");
 					switch (fragmentIndex) {
 
 						case "1": {
@@ -183,17 +213,39 @@
 
 							var yellowSegment = document.getElementById('yellow-segment');
 							yellowSegment.className = "animated fadeIn";
+							
 							break;
 						}
 
+
 						case "2": {
+							var edgeDetection = document.getElementById("edgeDetection");
+							edgeDetection.className = "animated fadeIn";
+							edgeDetection.style.display = "";
+							edgeDetection.style.position = "absolute";
+							edgeDetection.style.left = "0px";
+
+							PrefixedEvent(edgeDetection, "AnimationEnd", Case2Listener);
+							function Case2Listener(e) {
+								if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeIn") {
+									var yellowSegment = document.getElementById('yellow-segment');
+									yellowSegment.style.display = "none";
+									edgeDetection.style.position = "";
+									edgeDetection.style.left = "";
+								}
+							}
+
+							break;
+						}
+
+						case "3": {
 							title.innerHTML = "Bands";
 
-							var yellowSegment = document.getElementById('yellow-segment');
-							yellowSegment.className = "move-segmentation";
+							var edgeDetection = document.getElementById('edgeDetection');
+							edgeDetection.className = "move-segmentation";
 
-							PrefixedEvent(yellowSegment, "AnimationEnd", AnimationListener);
-							function AnimationListener(e) {
+							PrefixedEvent(edgeDetection, "AnimationEnd", case3Listener);
+							function case3Listener(e) {
 								if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "translate-right") {
 									var bandGraph = document.getElementById("band-graph");
 									bandGraph.style.display = "inline-block";
@@ -204,12 +256,12 @@
 
 						}
 
-						case "3": {
-							var yellowSegment = document.getElementById('yellow-segment');
+						case "4": {
+							var edgeDetection = document.getElementById('edgeDetection');
 							var bandGraph = document.getElementById("band-graph");
 
 							var canvas = document.getElementById("bandCanvas");
-							canvas.width = bandGraph.width + yellowSegment.width + 14;
+							canvas.width = bandGraph.width + edgeDetection.width + 14;
 							canvas.height = bandGraph.height;
 
 							var ctx = canvas.getContext("2d");
@@ -220,36 +272,36 @@
 							break;
 						}
 
-						case "4": {
+						case "5": {
 							title.innerHTML = "Plate";
 
-							var yellowSegment = document.getElementById('yellow-segment');
+							var edgeDetection = document.getElementById('edgeDetection');
 							var bandGraph = document.getElementById("band-graph");
-							var band1 = document.getElementById("band1");
+							var band1Edge = document.getElementById("band1Edge");
 							var canvas = document.getElementById("bandCanvas");
 
-							band1.style.display = "inline";
-							band1.className = "animated fadeIn";
+							band1Edge.style.display = "inline";
+							band1Edge.className = "animated fadeIn";
 							canvas.style.display = "none";
 
-							PrefixedEvent(band1, "AnimationEnd", Case5Listener);
+							PrefixedEvent(band1Edge, "AnimationEnd", Case5Listener);
 							function Case5Listener(e) {
 								if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeIn") {
 									bandGraph.className = "animated fadeOutLeft";
 
-									yellowSegment.className = "animated fadeOutRight";
+									edgeDetection.className = "animated fadeOutRight";
 
-									PrefixedEvent(yellowSegment, "AnimationEnd", Case5Listener2);
+									PrefixedEvent(edgeDetection, "AnimationEnd", Case5Listener2);
 									function Case5Listener2(e) {
 										if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutRight") {
-											band1.className = "translateBand";
+											band1Edge.className = "translateBand";
 
-											PrefixedEvent(band1, "AnimationEnd", Case5Listener3);
+											PrefixedEvent(band1Edge, "AnimationEnd", Case5Listener3);
 											function Case5Listener3(e) {
 												if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bandTranslate") {
-													yellowSegment.style.display = "none";
+													edgeDetection.style.display = "none";
 													bandGraph.style.display = "none";
-													band1.style.position = "static";
+													band1Edge.style.position = "static";
 												}
 											}
 										}
@@ -260,12 +312,12 @@
 							break;
 						}
 
-						case "5": {
+						case "6": {
 							var bandDiv = document.getElementById("bandDiv");
 							bandDiv.style.display = "";
 
-							var band1 = document.getElementById("band1");
-							band1.style.marginBottom = "0px";
+							var band1Edge = document.getElementById("band1Edge");
+							band1Edge.style.marginBottom = "0px";
 
 							var band1Graph = document.getElementById("band1Graph");
 							band1Graph.style.display = "";
@@ -275,8 +327,8 @@
 							break;
 						}
 
-						case "6": {
-							var band1 = document.getElementById("band1");
+						case "7": {
+							var band1Edge = document.getElementById("band1Edge");
 							var band1Graph = document.getElementById("band1Graph");
 
 							var canvas = document.getElementById("bandCanvas");
@@ -288,7 +340,7 @@
 							canvas.style.left = "";
 							canvas.style.bottom = "26px";
 							canvas.width = band1Graph.width;
-							canvas.height = band1Graph.height + band1.height + 14;
+							canvas.height = band1Graph.height + band1Edge.height + 14;
 
 							ctx.strokeStyle = "#FF0000";
 							ctx.lineWidth = 2;
@@ -297,8 +349,8 @@
 							break;
 						}
 
-						case "7": {
-							var band1 = document.getElementById("band1");
+						case "8": {
+							var band1Edge = document.getElementById("band1Edge");
 							var band1Graph = document.getElementById("band1Graph");
 							var canvas = document.getElementById("bandCanvas");
 							var plate1 = document.getElementById("plate1");
@@ -311,14 +363,14 @@
 							PrefixedEvent(plate1, "AnimationEnd", Case7Listener);
 							function Case7Listener(e) {
 								if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeIn") {
-									band1.className = "animated fadeOutLeft";
+									band1Edge.className = "animated fadeOutLeft";
 									band1Graph.className = "animated fadeOutRight";
 
 
-									PrefixedEvent(band1, "AnimationEnd", Case7Listener2);
+									PrefixedEvent(band1Edge, "AnimationEnd", Case7Listener2);
 									function Case7Listener2(e) {
 										if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutLeft") {
-											band1.style.display = "none";
+											band1Edge.style.display = "none";
 											band1Graph.style.display = "none";
 
 											var plate1 = document.getElementById("plate1");
@@ -343,7 +395,7 @@
 							break;
 						}
 
-						case "8": {
+						case "9": {
 							title.innerHTML = "Bounding Box";
 
 							var arrowDown = document.getElementById("arrowDown1");
@@ -362,7 +414,7 @@
 							break;
 						}
 
-						case "9": {
+						case "10": {
 							title.innerHTML = "Warp Perspective";
 
 							var arrowDown = document.getElementById("arrowDown2");
@@ -381,7 +433,7 @@
 							break;
 						}
 
-						case "10": {
+						case "11": {
 							title.innerHTML = "Find Contours";
 
 							var plate1Warped = document.getElementById("plate1Warped")
@@ -420,8 +472,8 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 			}
 
 			case "1": {
-				var yellowSegment = document.getElementById('yellow-segment');
-				yellowSegment.className = "animated fadeOut";
+				var edgeDetection = document.getElementById('edgeDetection');
+				edgeDetection.className = "animated fadeOut";
 				break;
 			}
 
@@ -435,8 +487,8 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 
 						bandGraph.style.display = "none";
 
-						var yellowSegment = document.getElementById('yellow-segment');
-						yellowSegment.className = "return-segmentation";
+						var edgeDetection = document.getElementById('edgeDetection');
+						edgeDetection.className = "return-segmentation";
 					}
 				}
 
@@ -451,23 +503,23 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 			}
 
 			case "4": {
-				var band1 = document.getElementById("band1");
-				band1.className = "animated fadeOut";
+				var band1Edge = document.getElementById("band1Edge");
+				band1Edge.className = "animated fadeOut";
 
-				PrefixedEvent(band1, "AnimationEnd", hidden4Listener);
+				PrefixedEvent(band1Edge, "AnimationEnd", hidden4Listener);
 				function hidden4Listener(e) {
 					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOut") {
 
-						band1.style.position = "absolute";
-						band1.className = "animated fadeOut";
+						band1Edge.style.position = "absolute";
+						band1Edge.className = "animated fadeOut";
 
 						var bandGraph = document.getElementById("band-graph");
 						bandGraph.style.display = "inline-block";
 						bandGraph.className = "animated fadeInLeft";
 
-						var yellowSegment = document.getElementById('yellow-segment');
-						yellowSegment.style.display = "inline-block";
-						yellowSegment.className = "animated fadeInRight";
+						var edgeDetection = document.getElementById('edgeDetection');
+						edgeDetection.style.display = "inline-block";
+						edgeDetection.className = "animated fadeInRight";
 
 					}
 				}
