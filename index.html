@@ -105,19 +105,19 @@
 
 						<img id="plate1Grey" src="images/plate1Grey.png" style="height: 41px; max-height: none; max-width: none; display: none;">
 
-						<img id="arrowDown1" src="images/arrowDownWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin: 25px 278px 50px auto;" >
+						<img id="arrowDown1" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 278px 35px auto;" >
 
 						<img id="plate1Warped" src="images/plate1Warped.png" style="height: 41px; max-height: none; max-width: none; display: none;">
 						
-						<img id="arrowLeft1" src="images/arrowLeftWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-left: 90px; margin-right: 90px;" >
+						<img id="arrowLeft1" src="images/arrowLeftWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; margin-left: 72px; margin-right: 80px; display: none;" >
 						
 						<img id="plate1Bounding" src="images/plate1Bounding.png" style="height: 41px; max-height: none; max-width: none; display: none;">
 
-						<img id="arrowDown4" src="images/arrowDownWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-left: auto; margin-right: auto;" >
+						<img id="arrowDown2" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 0 35px 270px;">
 						
-						<img id="plate1Threshold" src="images/plate1Threshold.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
+						<img id="plate1Threshold" src="images/plate1Threshold.png" style="height: 41px; max-height: none; max-width: none; display: none;">
 
-						<img id="arrowDown5" src="images/arrowDownWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-left: auto; margin-right: auto;" >
+						<img id="arrowRight2" src="images/arrowRightWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none;" >
 
 						<img id="plate1Text" src="images/plate1Text.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
 
@@ -432,16 +432,20 @@
 							var arrowDown = document.getElementById("arrowDown1");
 							arrowDown.style.display = "block";
 							arrowDown.className = "animated bounceInDown";
+							
 
 							var plate1Bounding = document.getElementById("plate1Bounding")
-							// plate1Bounding.style.display = "block";
 							plate1Bounding.style.display = "";
-							// plate1Bounding.style.marginLeft = "auto"
-							// plate1Bounding.style.marginRight = "auto"
 							plate1Bounding.className = "animated bounceInUp";
 
-							var bandDiv = document.getElementById("bandDiv");
-							bandDiv.insertBefore(arrowDown, plate1Bounding);
+							var arrowLeft = document.getElementById("arrowLeft1");
+							arrowLeft.style.display = "";
+							arrowLeft.style.visibility = "hidden";
+							arrowLeft.className = "animated bounceInDown";
+
+							var plate1Warped = document.getElementById("plate1Warped")
+							plate1Warped.style.display = "";
+							plate1Warped.style.visibility = "hidden";
 
 							break;
 						}
@@ -449,19 +453,13 @@
 						case "11": {
 							title.innerHTML = "Warp Perspective";
 
-							var arrowDown = document.getElementById("arrowLeft1");
-							// arrowDown.style.display = "block";
-							arrowDown.style.display = "";
-							arrowDown.className = "animated bounceInDown";
+							var arrowLeft = document.getElementById("arrowLeft1");
+							arrowLeft.style.visibility = "visible";
+							arrowLeft.className = "animated bounceInRight";
 
 							var plate1Warped = document.getElementById("plate1Warped")
-							plate1Warped.style.display = "";
-							// plate1Warped.style.marginLeft = "auto"
-							// plate1Warped.style.marginRight = "auto"
-							plate1Warped.className = "animated bounceInDown";
-
-							var bandDiv = document.getElementById("bandDiv");
-							bandDiv.insertBefore(arrowDown, plate1Warped);
+							plate1Warped.style.visibility = "visible";
+							plate1Warped.className = "animated bounceInLeft";
 
 							break;
 						}
@@ -469,18 +467,24 @@
 						case "12": {
 							title.innerHTML = "Warp Perspective";
 
-							var arrowDown = document.getElementById("arrowDown4");
+							var arrowDown = document.getElementById("arrowDown2");
 							arrowDown.style.display = "block";
 							arrowDown.className = "animated bounceInDown";
 
 							var plate1Threshold = document.getElementById("plate1Threshold")
-							plate1Threshold.style.display = "block";
-							plate1Threshold.style.marginLeft = "auto"
-							plate1Threshold.style.marginRight = "auto"
-							plate1Threshold.className = "animated bounceInDown";
+							plate1Threshold.style.display = "";
+							plate1Threshold.className = "animated bounceInUp";
 
-							var bandDiv = document.getElementById("bandDiv");
-							bandDiv.insertBefore(arrowDown, plate1Threshold);
+
+							var arrowRight = document.getElementById("arrowRight2");
+							arrowRight.style.display = "";
+							arrowRight.style.visibility = "hidden";
+							arrowRight.style.marginLeft = "80px";
+							arrowRight.style.marginRight = "80px";
+
+							var plate1Text = document.getElementById("plate1Text");
+							plate1Text.style.display = "";
+							plate1Text.style.visibility = "hidden";
 
 							break;
 						}
@@ -488,20 +492,13 @@
 						case "13": {
 							title.innerHTML = "Find Contours";
 
-							var plate1Warped = document.getElementById("plate1Warped")
+							var arrowRight = document.getElementById("arrowRight2");
+							arrowRight.style.visibility = "visible";
+							arrowRight.className = "animated bounceInLeft";
 
-							var arrowDown = document.getElementById("arrowDown5");
-							arrowDown.style.display = "block";
-							arrowDown.className = "animated bounceInDown";
-
-							var plate1Text = document.getElementById("plate1Text")
-							plate1Text.style.display = "block";
-							plate1Text.style.marginLeft = "auto"
-							plate1Text.style.marginRight = "auto"
-							plate1Text.className = "animated bounceInDown";
-
-							var bandDiv = document.getElementById("bandDiv");
-							bandDiv.insertBefore(arrowDown, plate1Text);
+							var plate1Text = document.getElementById("plate1Text");
+							plate1Text.style.visibility = "visible";
+							plate1Text.className = "animated bounceInRight";
 
 							break;
 						}
