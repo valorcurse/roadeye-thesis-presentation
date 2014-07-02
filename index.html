@@ -101,23 +101,23 @@
 						
 						<img id="plate1" src="images/plate1Edge.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none; position: absolute;">
 						
-						<img id="arrowRight1" src="images/arrowRightWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-right: 90px; margin-left: 90px;" >
+						<img id="arrowRight1" src="images/arrowRightWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-right: 127px; margin-left: 127px;" >
 
 						<img id="plate1Grey" src="images/plate1Grey.png" style="height: 41px; max-height: none; max-width: none; display: none;">
 
-						<img id="arrowDown1" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 278px 35px auto;" >
+						<img id="arrowDown1" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 230px 35px auto;" >
 
 						<img id="plate1Warped" src="images/plate1Warped.png" style="height: 41px; max-height: none; max-width: none; display: none;">
 						
-						<img id="arrowLeft1" src="images/arrowLeftWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; margin-left: 72px; margin-right: 80px; display: none;" >
+						<img id="arrowLeft1" src="images/arrowLeftWhite.png" style="height: 41px; background: none; border: none; boxShadow: none;  margin-right: 127px; margin-left: 127px; display: none;" >
 						
 						<img id="plate1Bounding" src="images/plate1Bounding.png" style="height: 41px; max-height: none; max-width: none; display: none;">
 
-						<img id="arrowDown2" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 0 35px 270px;">
+						<img id="arrowDown2" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 0 35px 220px;">
 						
 						<img id="plate1Threshold" src="images/plate1Threshold.png" style="height: 41px; max-height: none; max-width: none; display: none;">
 
-						<img id="arrowRight2" src="images/arrowRightWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none;" >
+						<img id="arrowRight2" src="images/arrowRightWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-right: 127px; margin-left: 127px;" >
 
 						<img id="plate1Text" src="images/plate1Text.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
 
@@ -384,19 +384,17 @@
 											band1Graph.style.display = "none";
 
 											var plate1 = document.getElementById("plate1");
-											plate1.className = "translatePlate";
 
+											plate1.style.position = "";
+											plate1.style.display = "";
 
-											PrefixedEvent(plate1, "AnimationEnd", Case7Listener3);
-											function Case7Listener3(e) {
-												if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "plateTranslate") {
+											var arrowRight = document.getElementById("arrowRight1");
+											arrowRight.style.display = "";
+											arrowRight.style.visibility = "hidden";
 
-													plate1.style.position = "";
-													plate1.style.display = "";
-													// plate1.style.marginLeft = "auto"
-													// plate1.style.marginRight = "auto"
-												}
-											}
+											var plate1Grey = document.getElementById("plate1Grey")
+											plate1Grey.style.visibility = "hidden";
+											plate1Grey.style.display = "";
 										}
 									}
 								}
@@ -409,19 +407,12 @@
 							title.innerHTML = "Bounding Box";
 
 							var arrowRight = document.getElementById("arrowRight1");
-							// arrowRight.style.display = "block";
-							arrowRight.style.display = "";
+							arrowRight.style.visibility = "visible";
 							arrowRight.className = "animated bounceInLeft";
 
 							var plate1Grey = document.getElementById("plate1Grey")
-							// plate1Grey.style.display = "block";
-							plate1Grey.style.display = "";
-							// plate1Grey.style.marginLeft = "auto"
-							// plate1Grey.style.marginRight = "auto"
+							plate1Grey.style.visibility = "visible";
 							plate1Grey.className = "animated bounceInRight";
-
-							var bandDiv = document.getElementById("bandDiv");
-							bandDiv.insertBefore(arrowRight, plate1Grey);
 
 							break;
 						}
@@ -479,8 +470,8 @@
 							var arrowRight = document.getElementById("arrowRight2");
 							arrowRight.style.display = "";
 							arrowRight.style.visibility = "hidden";
-							arrowRight.style.marginLeft = "80px";
-							arrowRight.style.marginRight = "80px";
+							// arrowRight.style.marginLeft = "80px";
+							// arrowRight.style.marginRight = "80px";
 
 							var plate1Text = document.getElementById("plate1Text");
 							plate1Text.style.display = "";

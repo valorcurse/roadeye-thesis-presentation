@@ -37,7 +37,7 @@ section p img[alt=logoCGI] { height: 150px; position: absolute; bottom: 0px; lef
 @-webkit-keyframes bandTranslate { 100% { -webkit-transform: translate(-55px, -282px); } }
 @-webkit-keyframes bandUnTranslate { 100% { -webkit-transform: translate(55px, 282px); } }
 
-@-webkit-keyframes plateTranslate { 100% { -webkit-transform: translate(250px, -15px); } }
+@-webkit-keyframes plateTranslate { 100% { -webkit-transform: translate(0, -15px); } }
 @-webkit-keyframes plateUnTranslate { 100% { -webkit-transform: translate(-250px, 15px); } }
 
 @-webkit-keyframes plateUnTranslate { 0% { -webkit-transform: translate(148px); } 100% { -webkit-transform: translate(0px); } }
