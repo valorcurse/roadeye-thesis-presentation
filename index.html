@@ -82,25 +82,41 @@
 			</section>
 
 			<section>
+				<h3>Algoritmes</h3>
+				<div style="margin-top: 125px;">
+
+					<div class="fragment grow" style="float: left; margin-right: 80px;">
+						<h4>Edge detection</h4>
+						<img src="images/edgeDetectionSource.png" style="height: 240px;">
+					</div>
+
+					<div style="float: left margin-left: 80px; height: 240px">
+						<h4>Feature detection</h4>
+						<img src="images/featureDetection.jpg" style="height: 240px;">
+					</div>
+				</div>
+			</section>
+
+			<section>
 				<div id="sourceImage" class="fragment current-visible" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;">
-					<h2>Source Image</h2>
+					<h2>Bron afbeelding</h2>
 					<img z-index: src="images/car.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
 				</div>
 
 				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
 					<h2 id="title"></h2>
-					
+
 					<img id="band-graph" src="images/bandGraph.png" style="height: 533px; max-height: none; max-width: none; display: none;">
-					
+
 					<div id="bandDiv" style="display: inline-block; position: relative;">
 						<img id="yellow-segment" src="images/yellow-segment.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
-						
+
 						<img id="edgeDetection" src="images/edge-detection.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none; display: none">
 
 						<img id="band1Edge" src="images/band1Edge.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
-						
+
 						<img id="plate1" src="images/plate1Edge.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none; position: absolute;">
-						
+
 						<img id="arrowRight1" src="images/arrowRightWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-right: 127px; margin-left: 127px;" >
 
 						<img id="plate1Grey" src="images/plate1Grey.png" style="height: 41px; max-height: none; max-width: none; display: none;">
@@ -108,13 +124,13 @@
 						<img id="arrowDown1" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 230px 35px auto;" >
 
 						<img id="plate1Warped" src="images/plate1Warped.png" style="height: 41px; max-height: none; max-width: none; display: none;">
-						
+
 						<img id="arrowLeft1" src="images/arrowLeftWhite.png" style="height: 41px; background: none; border: none; boxShadow: none;  margin-right: 117px; margin-left: 117px; display: none;" >
-						
+
 						<img id="plate1Bounding" src="images/plate1Bounding.png" style="height: 41px; max-height: none; max-width: none; display: none;">
 
 						<img id="arrowDown2" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 0 35px 220px;">
-						
+
 						<img id="plate1Threshold" src="images/plate1Threshold.png" style="height: 41px; max-height: none; max-width: none; display: none;">
 
 						<img id="arrowRight2" src="images/arrowRightWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-right: 127px; margin-left: 127px;" >
@@ -122,9 +138,9 @@
 						<img id="plate1Text" src="images/plate1Text.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
 
 					</div>
-					
+
 					<img id="band1Graph" src="images/band1Graph.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; display: none">
-					
+
 					<canvas id="bandCanvas" style="margin-top: 19px; margin-left: 25px; left: 0; position: absolute"/>
 
 				</div>
@@ -153,7 +169,7 @@
 
 				<div class="fragment" />
 			</section>
-			
+
 			<section>
 				<h2>Tekst herkenning<br>(Tesseract OCR)</h2>
 
@@ -246,7 +262,7 @@
 		Reveal.addEventListener('slidechanged', function( event ) {
 			slideIndex = event.indexh;
 			console.log("Slide: " + slideIndex);
-			if (slideIndex == 4) {
+			if (slideIndex == 5 || slideIndex == 10) {
 				Reveal.nextFragment();
 			}
 		});
@@ -254,7 +270,7 @@
 		Reveal.addEventListener('fragmentshown', function( event ) {
 			var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
 			console.log("Fragment shown: " + fragmentIndex);
-			
+
 			switch (slideIndex) {
 				case 2: {
 					switch (fragmentIndex) {
@@ -264,22 +280,24 @@
 					}
 					break;
 				}
-				
-				case 4: {
+
+				case 5: {
 					var title = document.getElementById("title");
 					switch (fragmentIndex) {
 
 						case "1": {
-							title.innerHTML = "Yellow Segmentation";
+							title.innerHTML = "Geel segmentatie";
 
 							var yellowSegment = document.getElementById('yellow-segment');
 							yellowSegment.className = "animated fadeIn";
-							
+
 							break;
 						}
 
 
 						case "2": {
+							title.innerHTML = "Rand detectie";
+
 							var edgeDetection = document.getElementById("edgeDetection");
 							edgeDetection.className = "animated fadeIn";
 							edgeDetection.style.display = "";
@@ -300,7 +318,7 @@
 						}
 
 						case "3": {
-							title.innerHTML = "Bands";
+							title.innerHTML = "Stroken";
 
 							var edgeDetection = document.getElementById('edgeDetection');
 							edgeDetection.className = "move-segmentation";
@@ -334,7 +352,7 @@
 						}
 
 						case "5": {
-							title.innerHTML = "Plate";
+							title.innerHTML = "Plaat";
 
 							var edgeDetection = document.getElementById('edgeDetection');
 							var bandGraph = document.getElementById("band-graph");
@@ -455,7 +473,7 @@
 						}
 
 						case "9": {
-							title.innerHTML = "Bounding Box";
+							title.innerHTML = "Grijs afbeelding";
 
 							var arrowRight = document.getElementById("arrowRight1");
 							arrowRight.style.visibility = "visible";
@@ -469,12 +487,12 @@
 						}
 
 						case "10": {
-							title.innerHTML = "Bounding Box";
+							title.innerHTML = "Omsluitend kader";
 
 							var arrowDown = document.getElementById("arrowDown1");
 							arrowDown.style.display = "block";
 							arrowDown.className = "animated bounceInDown";
-							
+
 
 							var plate1Bounding = document.getElementById("plate1Bounding")
 							plate1Bounding.style.display = "";
@@ -493,7 +511,7 @@
 						}
 
 						case "11": {
-							title.innerHTML = "Warp Perspective";
+							title.innerHTML = "Rechtgetrokken plaat";
 
 							var arrowLeft = document.getElementById("arrowLeft1");
 							arrowLeft.style.visibility = "visible";
@@ -507,7 +525,7 @@
 						}
 
 						case "12": {
-							title.innerHTML = "Warp Perspective";
+							title.innerHTML = "Drempel filter";
 
 							var arrowDown = document.getElementById("arrowDown2");
 							arrowDown.style.display = "block";
@@ -532,7 +550,7 @@
 						}
 
 						case "13": {
-							title.innerHTML = "Find Contours";
+							title.innerHTML = "Contouren vinden";
 
 							var arrowRight = document.getElementById("arrowRight2");
 							arrowRight.style.visibility = "visible";
