@@ -257,7 +257,7 @@
 		Reveal.addEventListener('slidechanged', function( event ) {
 			slideIndex = event.indexh;
 			console.log("Slide: " + slideIndex);
-			if (slideIndex == 5 || slideIndex == 10) {
+			if (slideIndex == 4 || slideIndex == 10) {
 				Reveal.nextFragment();
 			}
 		});
@@ -267,16 +267,7 @@
 			console.log("Fragment shown: " + fragmentIndex);
 
 			switch (slideIndex) {
-				case 2: {
-					switch (fragmentIndex) {
-						case "1": {
-
-						}
-					}
-					break;
-				}
-
-				case 5: {
+				case 4: {
 					var title = document.getElementById("title");
 					switch (fragmentIndex) {
 
