@@ -29,529 +29,588 @@
 					<li>Demo</li>
 				</ul>
 			</section>
- -->
-			<section>
-				<h2>Inleiding</h2>
-				<ul>
-					<div class="fragment fade-in">
-						<div class="fragment shrink">
-							<b>Probleem</b>
+		-->
+		<section>
+			<h2>Inleiding</h2>
+			<ul>
+				<div class="fragment fade-in">
+					<div class="fragment shrink">
+						<b>Probleem</b>
 
-							<ul>
-								<li>Gestolen auto's</li>
-								<li>Groot aantal smartphones</li>
-								<li>Crowdsourcing</li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="fragment fade-in">
-						<div class="fragment shrink">
-							<b>Doel</b>
-
-							<ul>
-								<li>Android applicatie</li>
-								<li>Kentekenplaten vinden in video beelden</li>
-								<li>Tekst herkennen</li>
-								<li>Match melden</li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="fragment fade-in">
-						<b>Onderzoeksvragen</b>
-						
 						<ul>
-							<li>Hoe kan de informatie van kentekenplaten worden gelezen uit de beelden van de camera van een smartphone?</li>
-							<li>Hoe kan de software geoptimaliseerd worden waardoor het op een juiste manier op een smartphone werkt?</li>
-							<li>Wat zijn de limitaties van zo een applicatie?</li>
+							<li>Gestolen auto's</li>
+							<li>Groot aantal smartphones</li>
+							<li>Crowdsourcing</li>
 						</ul>
 					</div>
-				</ul>
-			</section>
+				</div>
+
+				<div class="fragment fade-in">
+					<div class="fragment shrink">
+						<b>Doel</b>
+
+						<ul>
+							<li>Android applicatie</li>
+							<li>Kentekenplaten vinden in video beelden</li>
+							<li>Tekst herkennen</li>
+							<li>Match melden</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="fragment fade-in">
+					<b>Onderzoeksvragen</b>
+
+					<ul>
+						<li>Hoe kan de informatie van kentekenplaten worden gelezen uit de beelden van de camera van een smartphone?</li>
+						<li>Hoe kan de software geoptimaliseerd worden waardoor het op een juiste manier op een smartphone werkt?</li>
+						<li>Wat zijn de limitaties van zo een applicatie?</li>
+					</ul>
+				</div>
+			</ul>
+		</section>
+
+		<section>
+			<h3 style="margin-top: 240px">
+				Hoe kan de informatie van kentekenplaten worden gelezen uit de beelden van de camera van een smartphone?
+			</h3>
+		</section>
+
+		<section>
+			<h3>Algoritmes</h3>
+			<div style="margin-top: 125px;">
+
+				<div class="fragment grow" style="float: left; margin-right: 80px;">
+					<h4>Edge detection</h4>
+					<img src="images/edgeDetectionSource.png" style="height: 240px;">
+				</div>
+
+				<div style="float: left margin-left: 80px; height: 240px">
+					<h4>Feature detection</h4>
+					<img src="images/featureDetection.jpg" style="height: 240px;">
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div id="sourceImage" class="fragment current-visible" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;">
+				<h2>Bron afbeelding</h2>
+				<img z-index: src="images/car.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
+			</div>
+
+			<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
+				<h2 id="title"></h2>
+
+				<img id="band-graph" src="images/bandGraph.png" style="height: 533px; max-height: none; max-width: none; display: none;">
+
+				<div id="bandDiv" style="display: inline-block; position: relative;">
+					<img id="yellow-segment" src="images/yellow-segment.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
+
+					<img id="edgeDetection" src="images/edge-detection.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none; display: none">
+
+					<img id="band1Edge" src="images/band1Edge.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
+
+					<img id="plate1" src="images/plate1Edge.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none; position: absolute;">
+
+					<img id="arrowRight1" src="images/arrowRightWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-right: 127px; margin-left: 127px;" >
+
+					<img id="plate1Grey" src="images/plate1Grey.png" style="height: 41px; max-height: none; max-width: none; display: none;">
+
+					<img id="arrowDown1" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 230px 35px auto;" >
+
+					<img id="plate1Warped" src="images/plate1Warped.png" style="height: 41px; max-height: none; max-width: none; display: none;">
+
+					<img id="arrowLeft1" src="images/arrowLeftWhite.png" style="height: 41px; background: none; border: none; boxShadow: none;  margin-right: 117px; margin-left: 117px; display: none;" >
+
+					<img id="plate1Bounding" src="images/plate1Bounding.png" style="height: 41px; max-height: none; max-width: none; display: none;">
+
+					<img id="arrowDown2" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 0 35px 220px;">
+
+					<img id="plate1Threshold" src="images/plate1Threshold.png" style="height: 41px; max-height: none; max-width: none; display: none;">
+
+					<img id="arrowRight2" src="images/arrowRightWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-right: 127px; margin-left: 127px;" >
+
+					<img id="plate1Text" src="images/plate1Text.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
+
+				</div>
+
+				<img id="band1Graph" src="images/band1Graph.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; display: none">
+
+				<canvas id="bandCanvas" style="margin-top: 19px; margin-left: 25px; left: 0; position: absolute"/>
+
+			</div>
+
+			<div class="fragment" />
+
+			<div class="fragment" />
+
+			<div class="fragment" />
+
+			<div class="fragment" />
+
+			<div class="fragment" />
+
+			<div class="fragment" />
+
+			<div class="fragment" />
+
+			<div class="fragment" />
+
+			<div class="fragment" />
+
+			<div class="fragment" />
+
+			<div class="fragment" />
+
+			<div class="fragment" />
+		</section>
+
+		<section>
+			<h2>Tekst herkenning</h2>
+
+			<h4 style="margin-bottom: 0">Letter type</h4>
+			<img src="images/font.png">
+
+			<h4 style="margin-bottom: 0">Training</h4>
+			<img src="images/text-data.png">
+		</section>
+
+		<section>
+			<h3 style="margin-top: 240px">
+				Hoe kan de software geoptimaliseerd worden waardoor het op een juiste manier op een smartphone werkt?
+			</h3>
+		</section>
+
+		<section>
+			<h2>Architectuur</h2>
+			<img src="images/architecture-RoadEye-parallel.png" style="background-color: white; margin-top: 120px;">
+		</section>
+
+		<section>
+			<h3 style="margin-top: 240px">
+				Wat zijn de limitaties van zo een applicatie?
+			</h3>
+		</section>
+
+		<section>
+			<div class="fragment current-visible" style="position: absolute; left: 0" >
+				<h3>Afstand - 3 meter</h3>
+				<img src="images/3m.png">
+			</div>
+
+			<div class="fragment current-visible" style="position: absolute; left: 0">
+				<h3>Afstand - 4 meter</h3>
+				<img src="images/4m.png">
+			</div>
+
+			<div class="fragment current-visible" style="position: absolute; left: 0">
+				<h3>Afstand - 5 meter</h3>
+				<img src="images/5m.png">
+			</div>
+
+			<div class="fragment current-visible" style="position: absolute; left: 0">
+				<h3>Afstand - 6 meter</h3>
+				<img src="images/6m.png">
+			</div>
+
+			<div class="fragment current-visible" style="position: absolute; left: 0" >
+				<h3>Hoek - 47 graden</h3>
+				<img src="images/angle.png">
+			</div>
+
+			<div class="fragment current-visible" style="position: absolute; left: 0">
+				<h3>Hoek - 47+ graden</h3>
+				<img src="images/angle+.png">
+			</div>
+		</section>
+
+		<section>
+			<h3>Betrouwbare gebied</h3>
+			<img src="images/roadeye-road.png" style="margin-top: 85px;">
+		</section>
+
+		<section>
+			<h3>Reële scenario</h3>
+
+			<div class="fragment current-visible" style="position: absolute; left: 0" >
+				<img src="images/real-scenario-1.png">
+			</div>
+
+			<div class="fragment current-visible" style="position: absolute; left: 0" >
+				<img src="images/real-scenario-2.png">
+			</div>
+
+			<div class="fragment current-visible" style="position: absolute; left: 0">
+				<img src="images/real-scenario-3.png">
+			</div>
+		</section>
+
+		<section>
+			<h3>Aanbevelingen</h3>
 			
-			<section>
-				<h3 style="margin-top: 240px">
-					Hoe kan de informatie van kentekenplaten worden gelezen uit de beelden van de camera van een smartphone?
-				</h3>
-			</section>
+			<ul>
+				<div class="fragment fade-in">
+					<div class="fragment shrink">
+						<b>Afstand en snelheid</b>
 
-			<section>
-				<h3>Algoritmes</h3>
-				<div style="margin-top: 125px;">
-
-					<div class="fragment grow" style="float: left; margin-right: 80px;">
-						<h4>Edge detection</h4>
-						<img src="images/edgeDetectionSource.png" style="height: 240px;">
-					</div>
-
-					<div style="float: left margin-left: 80px; height: 240px">
-						<h4>Feature detection</h4>
-						<img src="images/featureDetection.jpg" style="height: 240px;">
+						<ul>
+							<li>Frame rate</li>
+							<li>Resolutie</li>
+						</ul>
 					</div>
 				</div>
-			</section>
 
-			<section>
-				<div id="sourceImage" class="fragment current-visible" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;">
-					<h2>Bron afbeelding</h2>
-					<img z-index: src="images/car.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
-				</div>
-
-				<div class="fragment" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; white-space: nowrap;">
-					<h2 id="title"></h2>
-
-					<img id="band-graph" src="images/bandGraph.png" style="height: 533px; max-height: none; max-width: none; display: none;">
-
-					<div id="bandDiv" style="display: inline-block; position: relative;">
-						<img id="yellow-segment" src="images/yellow-segment.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none;">
-
-						<img id="edgeDetection" src="images/edge-detection.png" style="width: 795.9107744107744px; height: 533px; max-height: none; max-width: none; display: none">
-
-						<img id="band1Edge" src="images/band1Edge.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
-
-						<img id="plate1" src="images/plate1Edge.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none; position: absolute;">
-
-						<img id="arrowRight1" src="images/arrowRightWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-right: 127px; margin-left: 127px;" >
-
-						<img id="plate1Grey" src="images/plate1Grey.png" style="height: 41px; max-height: none; max-width: none; display: none;">
-
-						<img id="arrowDown1" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 230px 35px auto;" >
-
-						<img id="plate1Warped" src="images/plate1Warped.png" style="height: 41px; max-height: none; max-width: none; display: none;">
-
-						<img id="arrowLeft1" src="images/arrowLeftWhite.png" style="height: 41px; background: none; border: none; boxShadow: none;  margin-right: 117px; margin-left: 117px; display: none;" >
-
-						<img id="plate1Bounding" src="images/plate1Bounding.png" style="height: 41px; max-height: none; max-width: none; display: none;">
-
-						<img id="arrowDown2" src="images/arrowDownWhite.png" style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 0 35px 220px;">
-
-						<img id="plate1Threshold" src="images/plate1Threshold.png" style="height: 41px; max-height: none; max-width: none; display: none;">
-
-						<img id="arrowRight2" src="images/arrowRightWhite.png" style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-right: 127px; margin-left: 127px;" >
-
-						<img id="plate1Text" src="images/plate1Text.png" style="height: 41px; left: 178px; max-height: none; max-width: none; display: none;">
-
+				<div class="fragment fade-in">
+					<div class="fragment shrink">
+						<b>Hoek (PCA algoritme)</b>
+						
+						<ul>
+							<span>
+								<img src="images/slanted-plate.png" style="width: 215px;">
+								<img src="images/unslanted-plate.png" style="width: 215px;">
+							</span>
+						</ul>
+						<ul>
+							<span>
+								<img src="images/plate-no-slant.png" style="width: 215px;">
+								<img src="images/unslanted-incorrectly.png" style="width: 215px;">
+							</span>
+						</ul>
 					</div>
-
-					<img id="band1Graph" src="images/band1Graph.png" style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; display: none">
-
-					<canvas id="bandCanvas" style="margin-top: 19px; margin-left: 25px; left: 0; position: absolute"/>
-
 				</div>
+			</ul>
+		</section>
 
-				<div class="fragment" />
-
-				<div class="fragment" />
-
-				<div class="fragment" />
-
-				<div class="fragment" />
-
-				<div class="fragment" />
-
-				<div class="fragment" />
-
-				<div class="fragment" />
-
-				<div class="fragment" />
-
-				<div class="fragment" />
-
-				<div class="fragment" />
-
-				<div class="fragment" />
-
-				<div class="fragment" />
-			</section>
-
-			<section>
-				<h2>Tekst herkenning<br>(Tesseract OCR)</h2>
-
-				<h4 style="margin-bottom: 0">Letter type</h4>
-				<img src="images/font.png">
-
-				<h4 style="margin-bottom: 0">Training</h4>
-				<img src="images/text-data.png">
-			</section>
-
-			<section>
-				<h3 style="margin-top: 240px">
-					Hoe kan de software geoptimaliseerd worden waardoor het op een juiste manier op een smartphone werkt?
-				</h3>
-			</section>
-
-			<section>
-				<h2>Architectuur</h2>
-				<img src="images/architecture-RoadEye-parallel.png" style="background-color: white; margin-top: 120px;">
-			</section>
-
-			<section>
-				<h3 style="margin-top: 240px">
-					Wat zijn de limitaties van zo een applicatie?
-				</h3>
-			</section>
-
-			<section>
-				<div class="fragment current-visible" style="position: absolute; left: 0" >
-					<h3>Afstand - 3 meter</h3>
-					<img src="images/3m.png">
-				</div>
-
-				<div class="fragment current-visible" style="position: absolute; left: 0">
-					<h3>Afstand - 4 meter</h3>
-					<img src="images/4m.png">
-				</div>
-
-				<div class="fragment current-visible" style="position: absolute; left: 0">
-					<h3>Afstand - 5 meter</h3>
-					<img src="images/5m.png">
-				</div>
-
-				<div class="fragment current-visible" style="position: absolute; left: 0">
-					<h3>Afstand - 6 meter</h3>
-					<img src="images/6m.png">
-				</div>
-
-				<div class="fragment current-visible" style="position: absolute; left: 0" >
-					<h3>Hoek - 47 graden</h3>
-					<img src="images/angle.png">
-				</div>
-
-				<div class="fragment current-visible" style="position: absolute; left: 0">
-					<h3>Hoek - 47+ graden</h3>
-					<img src="images/angle+.png">
-				</div>
-			</section>
-			<section>
-				<h3>Betrouwbare gebied</h3>
-				<img src="images/roadeye-road.png" style="margin-top: 85px;">
-			</section>
-		</div>
+		<section>
+			<h1>Einde</h1>
+	
+			<h3 style="margin-top: 220px;">Vragen?</h3>	
+		</section>
 	</div>
+</div>
 
-	<script src="lib/js/head.min.js"></script>
-	<script src="js/reveal.min.js"></script>
-	<script>
-		var pfx = ["webkit", "moz", "MS", "o", ""];
-		function PrefixedEvent(element, type, callback) {
-			for (var p = 0; p < pfx.length; p++) {
-				if (!pfx[p]) type = type.toLowerCase();
-				element.addEventListener(pfx[p]+type, callback, false);
-			}
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+<script>
+	var pfx = ["webkit", "moz", "MS", "o", ""];
+	function PrefixedEvent(element, type, callback) {
+		for (var p = 0; p < pfx.length; p++) {
+			if (!pfx[p]) type = type.toLowerCase();
+			element.addEventListener(pfx[p]+type, callback, false);
 		}
+	}
 
-		var indices = Reveal.getIndices();
-		var slideIndex = 0;
+	var indices = Reveal.getIndices();
+	var slideIndex = 0;
 
-		Reveal.initialize({
-			transition: 'cube',
-			center: false,
+	Reveal.initialize({
+		transition: 'cube',
+		center: false,
 
-			dependencies: [
-			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-			]
-		});
+		dependencies: [
+		{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		]
+	});
 
-		Reveal.addEventListener('slidechanged', function( event ) {
-			slideIndex = event.indexh;
-			console.log("Slide: " + slideIndex);
-			if (slideIndex == 4 || slideIndex == 9) {
-				Reveal.nextFragment();
-			}
-		});
+	Reveal.addEventListener('slidechanged', function( event ) {
+		slideIndex = event.indexh;
+		console.log("Slide: " + slideIndex);
+		if (slideIndex == 4 || slideIndex == 9) {
+			Reveal.nextFragment();
+		}
+	});
 
-		Reveal.addEventListener('fragmentshown', function( event ) {
-			var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
-			console.log("Fragment shown: " + fragmentIndex);
+	Reveal.addEventListener('fragmentshown', function( event ) {
+		var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
+		console.log("Fragment shown: " + fragmentIndex);
 
-			switch (slideIndex) {
-				case 4: {
-					var title = document.getElementById("title");
-					switch (fragmentIndex) {
+		switch (slideIndex) {
+			case 4: {
+				var title = document.getElementById("title");
+				switch (fragmentIndex) {
 
-						case "1": {
-							title.innerHTML = "Geel segmentatie";
+					case "1": {
+						title.innerHTML = "Geel segmentatie";
 
-							var yellowSegment = document.getElementById('yellow-segment');
-							yellowSegment.className = "animated fadeIn";
+						var yellowSegment = document.getElementById('yellow-segment');
+						yellowSegment.className = "animated fadeIn";
 
-							break;
-						}
+						break;
+					}
 
 
-						case "2": {
-							title.innerHTML = "Rand detectie";
+					case "2": {
+						title.innerHTML = "Rand detectie";
 
-							var edgeDetection = document.getElementById("edgeDetection");
-							edgeDetection.className = "animated fadeIn";
-							edgeDetection.style.display = "";
-							edgeDetection.style.position = "absolute";
-							edgeDetection.style.left = "0px";
+						var edgeDetection = document.getElementById("edgeDetection");
+						edgeDetection.className = "animated fadeIn";
+						edgeDetection.style.display = "";
+						edgeDetection.style.position = "absolute";
+						edgeDetection.style.left = "0px";
 
-							PrefixedEvent(edgeDetection, "AnimationEnd", Case2Listener);
-							function Case2Listener(e) {
-								if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeIn") {
-									var yellowSegment = document.getElementById('yellow-segment');
-									yellowSegment.style.display = "none";
-									edgeDetection.style.position = "";
-									edgeDetection.style.left = "";
-								}
+						PrefixedEvent(edgeDetection, "AnimationEnd", Case2Listener);
+						function Case2Listener(e) {
+							if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeIn") {
+								var yellowSegment = document.getElementById('yellow-segment');
+								yellowSegment.style.display = "none";
+								edgeDetection.style.position = "";
+								edgeDetection.style.left = "";
 							}
-
-							break;
 						}
 
-						case "3": {
-							title.innerHTML = "Stroken";
+						break;
+					}
 
-							var edgeDetection = document.getElementById('edgeDetection');
-							edgeDetection.className = "move-segmentation";
+					case "3": {
+						title.innerHTML = "Stroken";
 
-							PrefixedEvent(edgeDetection, "AnimationEnd", case3Listener);
-							function case3Listener(e) {
-								if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "translate-right") {
-									var bandGraph = document.getElementById("band-graph");
-									bandGraph.style.display = "inline-block";
-									bandGraph.className = "animated fadeInLeft";
-								}
+						var edgeDetection = document.getElementById('edgeDetection');
+						edgeDetection.className = "move-segmentation";
+
+						PrefixedEvent(edgeDetection, "AnimationEnd", case3Listener);
+						function case3Listener(e) {
+							if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "translate-right") {
+								var bandGraph = document.getElementById("band-graph");
+								bandGraph.style.display = "inline-block";
+								bandGraph.className = "animated fadeInLeft";
 							}
-							break;
-
 						}
+						break;
 
-						case "4": {
-							var edgeDetection = document.getElementById('edgeDetection');
-							var bandGraph = document.getElementById("band-graph");
+					}
 
-							var canvas = document.getElementById("bandCanvas");
-							canvas.width = bandGraph.width + edgeDetection.width + 14;
-							canvas.height = bandGraph.height;
+					case "4": {
+						var edgeDetection = document.getElementById('edgeDetection');
+						var bandGraph = document.getElementById("band-graph");
 
-							var ctx = canvas.getContext("2d");
-							ctx.strokeStyle = "#FF0000";
-							ctx.lineWidth = 2;
-							ctx.strokeRect(0, canvas.height / 2 + 15, canvas.width, 42);
+						var canvas = document.getElementById("bandCanvas");
+						canvas.width = bandGraph.width + edgeDetection.width + 14;
+						canvas.height = bandGraph.height;
 
-							break;
-						}
+						var ctx = canvas.getContext("2d");
+						ctx.strokeStyle = "#FF0000";
+						ctx.lineWidth = 2;
+						ctx.strokeRect(0, canvas.height / 2 + 15, canvas.width, 42);
 
-						case "5": {
-							title.innerHTML = "Plaat";
+						break;
+					}
 
-							var edgeDetection = document.getElementById('edgeDetection');
-							var bandGraph = document.getElementById("band-graph");
-							var band1Edge = document.getElementById("band1Edge");
-							var canvas = document.getElementById("bandCanvas");
+					case "5": {
+						title.innerHTML = "Plaat";
 
-							band1Edge.style.display = "inline";
-							band1Edge.className = "animated fadeIn";
-							canvas.style.display = "none";
+						var edgeDetection = document.getElementById('edgeDetection');
+						var bandGraph = document.getElementById("band-graph");
+						var band1Edge = document.getElementById("band1Edge");
+						var canvas = document.getElementById("bandCanvas");
 
-							PrefixedEvent(band1Edge, "AnimationEnd", Case5Listener);
-							function Case5Listener(e) {
-								if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeIn") {
-									bandGraph.className = "animated fadeOutLeft";
+						band1Edge.style.display = "inline";
+						band1Edge.className = "animated fadeIn";
+						canvas.style.display = "none";
 
-									edgeDetection.className = "animated fadeOutRight";
+						PrefixedEvent(band1Edge, "AnimationEnd", Case5Listener);
+						function Case5Listener(e) {
+							if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeIn") {
+								bandGraph.className = "animated fadeOutLeft";
 
-									PrefixedEvent(edgeDetection, "AnimationEnd", Case5Listener2);
-									function Case5Listener2(e) {
-										if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutRight") {
-											band1Edge.className = "translateBand";
+								edgeDetection.className = "animated fadeOutRight";
 
-											PrefixedEvent(band1Edge, "AnimationEnd", Case5Listener3);
-											function Case5Listener3(e) {
-												if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bandTranslate") {
-													edgeDetection.style.display = "none";
-													bandGraph.style.display = "none";
-													band1Edge.style.position = "static";
-												}
+								PrefixedEvent(edgeDetection, "AnimationEnd", Case5Listener2);
+								function Case5Listener2(e) {
+									if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutRight") {
+										band1Edge.className = "translateBand";
+
+										PrefixedEvent(band1Edge, "AnimationEnd", Case5Listener3);
+										function Case5Listener3(e) {
+											if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bandTranslate") {
+												edgeDetection.style.display = "none";
+												bandGraph.style.display = "none";
+												band1Edge.style.position = "static";
 											}
 										}
 									}
 								}
 							}
-
-							break;
 						}
 
-						case "6": {
-							var bandDiv = document.getElementById("bandDiv");
-							bandDiv.style.display = "";
+						break;
+					}
 
-							var band1Edge = document.getElementById("band1Edge");
-							band1Edge.style.marginBottom = "0px";
+					case "6": {
+						var bandDiv = document.getElementById("bandDiv");
+						bandDiv.style.display = "";
 
-							var band1Graph = document.getElementById("band1Graph");
-							band1Graph.style.display = "";
-							band1Graph.style.marginTop = "0px";
-							band1Graph.className = "animated fadeInUp";
+						var band1Edge = document.getElementById("band1Edge");
+						band1Edge.style.marginBottom = "0px";
 
-							break;
-						}
+						var band1Graph = document.getElementById("band1Graph");
+						band1Graph.style.display = "";
+						band1Graph.style.marginTop = "0px";
+						band1Graph.className = "animated fadeInUp";
 
-						case "7": {
-							var band1Edge = document.getElementById("band1Edge");
-							var band1Graph = document.getElementById("band1Graph");
+						break;
+					}
 
-							var canvas = document.getElementById("bandCanvas");
-							var ctx = canvas.getContext("2d");
+					case "7": {
+						var band1Edge = document.getElementById("band1Edge");
+						var band1Graph = document.getElementById("band1Graph");
 
-							ctx.clearRect(0, 0, canvas.width, canvas.height);
-							canvas.style.display = "";
-							canvas.style.right = "83px";
-							canvas.style.left = "";
-							canvas.style.bottom = "26px";
-							canvas.width = band1Graph.width;
-							canvas.height = band1Graph.height + band1Edge.height + 14;
+						var canvas = document.getElementById("bandCanvas");
+						var ctx = canvas.getContext("2d");
 
-							ctx.strokeStyle = "#FF0000";
-							ctx.lineWidth = 2;
-							ctx.strokeRect(98, 0, 122, canvas.height);
+						ctx.clearRect(0, 0, canvas.width, canvas.height);
+						canvas.style.display = "";
+						canvas.style.right = "83px";
+						canvas.style.left = "";
+						canvas.style.bottom = "26px";
+						canvas.width = band1Graph.width;
+						canvas.height = band1Graph.height + band1Edge.height + 14;
 
-							break;
-						}
+						ctx.strokeStyle = "#FF0000";
+						ctx.lineWidth = 2;
+						ctx.strokeRect(98, 0, 122, canvas.height);
 
-						case "8": {
-							var band1Edge = document.getElementById("band1Edge");
-							var band1Graph = document.getElementById("band1Graph");
-							var canvas = document.getElementById("bandCanvas");
-							var plate1 = document.getElementById("plate1");
+						break;
+					}
 
-							canvas.style.display = "none";
+					case "8": {
+						var band1Edge = document.getElementById("band1Edge");
+						var band1Graph = document.getElementById("band1Graph");
+						var canvas = document.getElementById("bandCanvas");
+						var plate1 = document.getElementById("plate1");
 
-							plate1.style.display = "";
-							plate1.className = "animated fadeIn";
+						canvas.style.display = "none";
 
-							PrefixedEvent(plate1, "AnimationEnd", Case7Listener);
-							function Case7Listener(e) {
-								if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeIn") {
-									band1Edge.className = "animated fadeOutLeft";
-									band1Graph.className = "animated fadeOutRight";
+						plate1.style.display = "";
+						plate1.className = "animated fadeIn";
+
+						PrefixedEvent(plate1, "AnimationEnd", Case7Listener);
+						function Case7Listener(e) {
+							if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeIn") {
+								band1Edge.className = "animated fadeOutLeft";
+								band1Graph.className = "animated fadeOutRight";
 
 
-									PrefixedEvent(band1Edge, "AnimationEnd", Case7Listener2);
-									function Case7Listener2(e) {
-										if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutLeft") {
-											band1Edge.style.display = "none";
-											band1Graph.style.display = "none";
+								PrefixedEvent(band1Edge, "AnimationEnd", Case7Listener2);
+								function Case7Listener2(e) {
+									if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutLeft") {
+										band1Edge.style.display = "none";
+										band1Graph.style.display = "none";
 
-											var plate1 = document.getElementById("plate1");
+										var plate1 = document.getElementById("plate1");
 
-											plate1.style.position = "";
-											plate1.style.display = "";
+										plate1.style.position = "";
+										plate1.style.display = "";
 
-											var arrowRight = document.getElementById("arrowRight1");
-											arrowRight.style.display = "";
-											arrowRight.style.visibility = "hidden";
+										var arrowRight = document.getElementById("arrowRight1");
+										arrowRight.style.display = "";
+										arrowRight.style.visibility = "hidden";
 
-											var plate1Grey = document.getElementById("plate1Grey")
-											plate1Grey.style.visibility = "hidden";
-											plate1Grey.style.display = "";
-										}
+										var plate1Grey = document.getElementById("plate1Grey")
+										plate1Grey.style.visibility = "hidden";
+										plate1Grey.style.display = "";
 									}
 								}
 							}
-
-							break;
 						}
 
-						case "9": {
-							title.innerHTML = "Grijs afbeelding";
-
-							var arrowRight = document.getElementById("arrowRight1");
-							arrowRight.style.visibility = "visible";
-							arrowRight.className = "animated bounceInLeft";
-
-							var plate1Grey = document.getElementById("plate1Grey")
-							plate1Grey.style.visibility = "visible";
-							plate1Grey.className = "animated bounceInRight";
-
-							break;
-						}
-
-						case "10": {
-							title.innerHTML = "Omsluitend kader";
-
-							var arrowDown = document.getElementById("arrowDown1");
-							arrowDown.style.display = "block";
-							arrowDown.className = "animated bounceInDown";
-
-
-							var plate1Bounding = document.getElementById("plate1Bounding")
-							plate1Bounding.style.display = "";
-							plate1Bounding.className = "animated bounceInUp";
-
-							var arrowLeft = document.getElementById("arrowLeft1");
-							arrowLeft.style.display = "";
-							arrowLeft.style.visibility = "hidden";
-							arrowLeft.className = "animated bounceInDown";
-
-							var plate1Warped = document.getElementById("plate1Warped")
-							plate1Warped.style.display = "";
-							plate1Warped.style.visibility = "hidden";
-
-							break;
-						}
-
-						case "11": {
-							title.innerHTML = "Rechtgetrokken plaat";
-
-							var arrowLeft = document.getElementById("arrowLeft1");
-							arrowLeft.style.visibility = "visible";
-							arrowLeft.className = "animated bounceInRight";
-
-							var plate1Warped = document.getElementById("plate1Warped")
-							plate1Warped.style.visibility = "visible";
-							plate1Warped.className = "animated bounceInLeft";
-
-							break;
-						}
-
-						case "12": {
-							title.innerHTML = "Drempel filter";
-
-							var arrowDown = document.getElementById("arrowDown2");
-							arrowDown.style.display = "block";
-							arrowDown.className = "animated bounceInDown";
-
-							var plate1Threshold = document.getElementById("plate1Threshold")
-							plate1Threshold.style.display = "";
-							plate1Threshold.className = "animated bounceInUp";
-
-
-							var arrowRight = document.getElementById("arrowRight2");
-							arrowRight.style.display = "";
-							arrowRight.style.visibility = "hidden";
-
-							var plate1Text = document.getElementById("plate1Text");
-							plate1Text.style.display = "";
-							plate1Text.style.visibility = "hidden";
-
-							break;
-						}
-
-						case "13": {
-							title.innerHTML = "Contouren vinden";
-
-							var arrowRight = document.getElementById("arrowRight2");
-							arrowRight.style.visibility = "visible";
-							arrowRight.className = "animated bounceInLeft";
-
-							var plate1Text = document.getElementById("plate1Text");
-							plate1Text.style.visibility = "visible";
-							plate1Text.className = "animated bounceInRight";
-
-							break;
-						}
+						break;
 					}
 
-					break;
+					case "9": {
+						title.innerHTML = "Grijs afbeelding";
+
+						var arrowRight = document.getElementById("arrowRight1");
+						arrowRight.style.visibility = "visible";
+						arrowRight.className = "animated bounceInLeft";
+
+						var plate1Grey = document.getElementById("plate1Grey")
+						plate1Grey.style.visibility = "visible";
+						plate1Grey.className = "animated bounceInRight";
+
+						break;
+					}
+
+					case "10": {
+						title.innerHTML = "Omsluitend kader";
+
+						var arrowDown = document.getElementById("arrowDown1");
+						arrowDown.style.display = "block";
+						arrowDown.className = "animated bounceInDown";
+
+
+						var plate1Bounding = document.getElementById("plate1Bounding")
+						plate1Bounding.style.display = "";
+						plate1Bounding.className = "animated bounceInUp";
+
+						var arrowLeft = document.getElementById("arrowLeft1");
+						arrowLeft.style.display = "";
+						arrowLeft.style.visibility = "hidden";
+						arrowLeft.className = "animated bounceInDown";
+
+						var plate1Warped = document.getElementById("plate1Warped")
+						plate1Warped.style.display = "";
+						plate1Warped.style.visibility = "hidden";
+
+						break;
+					}
+
+					case "11": {
+						title.innerHTML = "Rechtgetrokken plaat";
+
+						var arrowLeft = document.getElementById("arrowLeft1");
+						arrowLeft.style.visibility = "visible";
+						arrowLeft.className = "animated bounceInRight";
+
+						var plate1Warped = document.getElementById("plate1Warped")
+						plate1Warped.style.visibility = "visible";
+						plate1Warped.className = "animated bounceInLeft";
+
+						break;
+					}
+
+					case "12": {
+						title.innerHTML = "Drempel filter";
+
+						var arrowDown = document.getElementById("arrowDown2");
+						arrowDown.style.display = "block";
+						arrowDown.className = "animated bounceInDown";
+
+						var plate1Threshold = document.getElementById("plate1Threshold")
+						plate1Threshold.style.display = "";
+						plate1Threshold.className = "animated bounceInUp";
+
+
+						var arrowRight = document.getElementById("arrowRight2");
+						arrowRight.style.display = "";
+						arrowRight.style.visibility = "hidden";
+
+						var plate1Text = document.getElementById("plate1Text");
+						plate1Text.style.display = "";
+						plate1Text.style.visibility = "hidden";
+
+						break;
+					}
+
+					case "13": {
+						title.innerHTML = "Contouren vinden";
+
+						var arrowRight = document.getElementById("arrowRight2");
+						arrowRight.style.visibility = "visible";
+						arrowRight.className = "animated bounceInLeft";
+
+						var plate1Text = document.getElementById("plate1Text");
+						plate1Text.style.visibility = "visible";
+						plate1Text.className = "animated bounceInRight";
+
+						break;
+					}
 				}
+
+				break;
 			}
-		});
+		}
+	});
 
 Reveal.addEventListener( 'fragmenthidden', function( event ) {
 	var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
