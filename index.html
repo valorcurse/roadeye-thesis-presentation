@@ -112,13 +112,13 @@
 
 						<img id="band1" 			src="images/band1.png" 				style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; position: absolute; left: 0; top: 282px; display: none">
 						<img id="plate1Graph" 		src="images/plate1Graph.png" 		style="width: 795.9107744107744px; height: 41px; max-height: none; max-width: none; display: none; margin-top: 0; visibility: hidden">
-						<img id="plate1" 			src="images/plate1Edge.png" 		style="height: 41px; left: 178px; max-height: none; max-width: none; display: none; position: absolute;">
+						<img id="plate1" 			src="images/plate1Edge.png" 		style="height: 41px; left: 99px; bottom: 54px; max-height: none; max-width: none; display: none; position: absolute;">
 
 						<img id="arrowRight1" 		src="images/arrowRightWhite.png" 	style="height: 41px; background: none; border: none; boxShadow: none; display: none; margin-right: 127px; margin-left: 127px;" >
 
 						<img id="plate1Grey" 		src="images/plate1Grey.png" 		style="height: 41px; max-height: none; max-width: none; display: none;">
 
-						<img id="arrowDown1" 		src="images/arrowDownWhite.png" 	style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 230px 35px auto;" >
+						<img id="arrowDown1" 		src="images/arrowDownWhite.png" 	style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 70px 35px auto;" >
 
 						<img id="plate1Warped" 		src="images/plate1Warped.png" 		style="height: 41px; max-height: none; max-width: none; display: none;">
 
@@ -126,7 +126,7 @@
 
 						<img id="plate1Bounding"	src="images/plate1Bounding.png" 	style="height: 41px; max-height: none; max-width: none; display: none;">
 
-						<img id="arrowDown2" 		src="images/arrowDownWhite.png" 	style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 0 35px 220px;">
+						<img id="arrowDown2" 		src="images/arrowDownWhite.png" 	style="width: 41px; background: none; border: none; boxShadow: none; display: none; margin: 35px 0 35px 60px;">
 
 						<img id="plate1Threshold"	src="images/plate1Threshold.png" 	style="height: 41px; max-height: none; max-width: none; display: none;">
 
@@ -404,10 +404,13 @@
 							ctx.strokeStyle = "#FF0000";
 							ctx.lineWidth = 2;
 
+							// Band 3
 							ctx.strokeRect(3, 62, canvas.width - 6, 10);
 
+							// Band 2
 							ctx.strokeRect(3, 132, canvas.width - 6, 20);
 
+							// Band 1
 							ctx.strokeRect(3, canvas.height / 2 + 14, canvas.width - 6, 42);
 
 
@@ -548,6 +551,11 @@
 						case "8": {
 							var band1 = document.getElementById("band1");
 							var plate1Graph = document.getElementById("plate1Graph");
+							var band2 = document.getElementById("band2");
+							var plate2Graph = document.getElementById("plate2Graph");
+							var band3 = document.getElementById("band3");
+							var plate3Graph = document.getElementById("plate3Graph");
+							
 							var canvas = document.getElementById("bandCanvas");
 							var plate1 = document.getElementById("plate1");
 
@@ -556,31 +564,58 @@
 							plate1.style.display = "";
 							plate1.className = "animated fadeIn";
 
-							PrefixedEvent(plate1, "AnimationEnd", Case7Listener);
-							function Case7Listener(e) {
+							PrefixedEvent(plate1, "AnimationEnd", Case8Listener);
+							function Case8Listener(e) {
 								if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeIn") {
 									band1.className = "animated fadeOutLeft";
 									plate1Graph.className = "animated fadeOutRight";
 
+									band2.className = "animated fadeOutLeft";
+									plate2Graph.className = "animated fadeOutRight";
 
-									PrefixedEvent(band1, "AnimationEnd", Case7Listener2);
-									function Case7Listener2(e) {
+									band3.className = "animated fadeOutLeft";
+									plate3Graph.className = "animated fadeOutRight";
+
+									PrefixedEvent(band1, "AnimationEnd", Case8Listener2);
+									function Case8Listener2(e) {
 										if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutLeft") {
-											band1.style.display = "none";
-											plate1Graph.style.display = "none";
+											band1.style.visibility = "hidden";
+											plate1Graph.style.visibility = "hidden";
 
-											var plate1 = document.getElementById("plate1");
+											band2.style.visibility = "hidden";
+											plate2Graph.style.visibility = "hidden";
 
-											plate1.style.position = "";
-											plate1.style.display = "";
+											band3.style.visibility = "hidden";
+											plate3Graph.style.visibility = "hidden";
 
-											var arrowRight = document.getElementById("arrowRight1");
-											arrowRight.style.display = "";
-											arrowRight.style.visibility = "hidden";
 
-											var plate1Grey = document.getElementById("plate1Grey")
-											plate1Grey.style.visibility = "hidden";
-											plate1Grey.style.display = "";
+											plate1.className = "translatePlate";
+
+											PrefixedEvent(plate1, "AnimationEnd", Case8Listener3);
+											function Case8Listener3(e) {
+												if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "plateTranslate") {
+													band1.style.display = "none";
+													plate1Graph.style.display = "none";
+
+													band2.style.display = "none";
+													plate2Graph.style.display = "none";
+
+													band3.style.display = "none";
+													plate3Graph.style.display = "none";
+
+
+													plate1.style.position = "";
+													plate1.style.display = "";
+
+													var arrowRight = document.getElementById("arrowRight1");
+													arrowRight.style.display = "";
+													arrowRight.style.visibility = "hidden";
+
+													var plate1Grey = document.getElementById("plate1Grey")
+													plate1Grey.style.visibility = "hidden";
+													plate1Grey.style.display = "";
+												}
+											}
 										}
 									}
 								}
