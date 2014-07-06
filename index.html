@@ -280,13 +280,11 @@
 					</div>
 
 					<div class="fragment fade-in">
-						<div class="fragment shrink">
-							<b>Tekstherkenning</b>
-							<ul>
-								<li>Op elkaar lijkende karakters</li>
-								<li>Missende karakters</li>
-							</ul>
-						</div>
+						<b>Tekstherkenning</b>
+						<ul>
+							<li>Op elkaar lijkende karakters</li>
+							<li>Missende karakters</li>
+						</ul>
 					</div>
 
 				</ul>
@@ -302,6 +300,7 @@
 
 	<script src="lib/js/head.min.js"></script>
 	<script src="js/reveal.min.js"></script>
+	
 	<script>
 		var pfx = ["webkit", "moz", "MS", "o", ""];
 		function PrefixedEvent(element, type, callback) {
@@ -718,155 +717,6 @@
 				}
 			}
 		});
-
-Reveal.addEventListener( 'fragmenthidden', function( event ) {
-	var fragmentIndex = event.fragment.getAttribute("data-fragment-index");
-	console.log("Hidden: " + fragmentIndex);
-	
-	if (slideIndex == 1) {
-
-		switch(fragmentIndex) {
-			case "0": {
-				Reveal.prev();
-			}
-
-			case "1": {
-				var edgeDetection = document.getElementById('edgeDetection');
-				edgeDetection.className = "animated fadeOut";
-				break;
-			}
-
-			case "2": {
-				var bandGraph = document.getElementById("band-graph");
-				bandGraph.className = "animated fadeOutLeft";
-
-				PrefixedEvent(bandGraph, "AnimationEnd", BandAnimationListener);
-				function BandAnimationListener(e) {
-					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutLeft") {
-
-						bandGraph.style.display = "none";
-
-						var edgeDetection = document.getElementById('edgeDetection');
-						edgeDetection.className = "return-segmentation";
-					}
-				}
-
-				break;
-			}
-
-			case "3": {
-				var canvas = document.getElementById("bandCanvas");
-				var ctx = canvas.getContext("2d");
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-				break;
-			}
-
-			case "4": {
-				var band1 = document.getElementById("band1");
-				band1.className = "animated fadeOut";
-
-				PrefixedEvent(band1, "AnimationEnd", hidden4Listener);
-				function hidden4Listener(e) {
-					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOut") {
-
-						band1.style.position = "absolute";
-						band1.className = "animated fadeOut";
-
-						var bandGraph = document.getElementById("band-graph");
-						bandGraph.style.display = "inline-block";
-						bandGraph.className = "animated fadeInLeft";
-
-						var edgeDetection = document.getElementById('edgeDetection');
-						edgeDetection.style.display = "inline-block";
-						edgeDetection.className = "animated fadeInRight";
-
-					}
-				}
-
-				break;
-			}
-
-			case "5": {
-				var bandDiv = document.getElementById("bandDiv");
-
-				var plate1Graph = document.getElementById("plate1Graph");
-				plate1Graph.className = "animated fadeOutDown";
-
-				PrefixedEvent(plate1Graph, "AnimationEnd", hidden6Listener);
-				function hidden6Listener(e) {
-					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "fadeOutDown") {
-						bandDiv.style.display = "inline-block";
-						plate1Graph.style.display = "none";
-					}
-				}
-
-				break;
-			}
-
-			case "7": {
-				var plate1 = document.getElementById("plate1");
-				plate1.style.display = "none";
-			}
-			
-			case "9": {
-				var plate1Bounding = document.getElementById("plate1Bounding");
-				plate1Bounding.className = "animated bounceOutUp";
-
-				var arrowDown = document.getElementById("arrowRight1");
-				arrowDown.className = "animated bounceOutUp";
-
-				PrefixedEvent(arrowDown, "AnimationEnd", hidden10Listener);
-				function hidden10Listener(e) {
-					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bounceOutUp") {
-						arrowDown.style.display = "none";
-						plate1Bounding.display = "none";
-
-						var plate1 = document.getElementById("plate1");
-						plate1.className = "return-segmentation";
-					}
-				}
-
-				break;
-			}
-
-			case "10": {
-				var plate1Warped = document.getElementById("plate1Warped");
-				plate1Warped.className = "animated bounceOutUp";
-
-				var arrowDown = document.getElementById("arrowDown1");
-				arrowDown.className = "animated bounceOutUp";
-
-				PrefixedEvent(arrowDown, "AnimationEnd", hidden11Listener);
-				function hidden11Listener(e) {
-					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bounceOutUp") {
-						arrowDown.style.display = "none";
-						plate1Warped.display = "none";
-					}
-				}
-
-				break;
-			}
-
-			case "11": {
-				var plate1Text = document.getElementById("plate1Text");
-				plate1Text.className = "animated bounceOutUp";
-
-				var arrowDown = document.getElementById("arrowLeft1");
-				arrowDown.className = "animated bounceOutUp";
-
-				PrefixedEvent(arrowDown, "AnimationEnd", hidden12Listener);
-				function hidden12Listener(e) {
-					if (e.type.toLowerCase().indexOf("animationend") >= 0 && e.animationName == "bounceOutUp") {
-						arrowDown.style.display = "none";
-						plate1Text.display = "none";
-					}
-				}
-
-				break;
-			}
-		}
-	}
-});
 </script>
 </body>
 </html>
