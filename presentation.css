@@ -48,13 +48,13 @@ section p img[alt=logoCGI] { height: 150px; position: absolute; bottom: 0px; lef
 @-webkit-keyframes translate-left { 0% { -webkit-transform: translate(60px); } 100% { -webkit-transform: translate(0px); } }
 
 
-@-webkit-keyframes band1Translate { 100% { -webkit-transform: translate(-55px, -75px); } }
+@-webkit-keyframes band1Translate { 100% { -webkit-transform: translate(-55px, -70px); } }
 @-webkit-keyframes band1UnTranslate { 100% { -webkit-transform: translate(55px, 75px); } }
 
-@-webkit-keyframes band2Translate { 100% { -webkit-transform: translate(-55px, -35px); } }
+@-webkit-keyframes band2Translate { 100% { -webkit-transform: translate(-55px, -30px); } }
 @-webkit-keyframes band2UnTranslate { 100% { -webkit-transform: translate(55px, 282px); } }
 
-@-webkit-keyframes band3Translate { 100% { -webkit-transform: translate(-55px, -75px); } }
+@-webkit-keyframes band3Translate { 100% { -webkit-transform: translate(-55px, -65px); } }
 @-webkit-keyframes band3UnTranslate { 100% { -webkit-transform: translate(55px, 282px); } }
 
 
